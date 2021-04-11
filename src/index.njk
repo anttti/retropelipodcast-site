@@ -1,24 +1,70 @@
----
+--- 
 layout: layouts/base.njk
 ---
 
-<div class="space-y-8">
+<div class="relative z-40">
 
-{% set episodes = collections.episodes %}
+  {% set episodes = collections.episodes | reverse %}
 
-<ul>
-  {% for episode in episodes %}
-    <li>
-      <strong>
-        <a href="{{ episode.url | url }}">{{ episode.data.title }}</a>
-      </strong>
-      -
-      <time datetime="{{ episode.date | htmlDateString }}">{{ episode.date | readableDate }}</time>
-      -
-      <span>{{ episode.data.summary }}</span>
-      <p>{{ episode.content | safe }}</p>
-    </li>
-  {% endfor %}
-</ul>
+  <style>
+    #latest-episode {
+      border: 64px solid;
+      border-image: url("/img/bg-400.png") round;
+      border-image-slice: 64 fill;
+    }
+    h2,
+    h3,
+    p,
+    body {
+      color: #2f1400;
+      text-shadow: 1px 1px rgb(255 255 255 / 20%);
+    }
+    body {
+      font-family: 'VT323';
+    }
+    h2,
+    h3 {
+      font-family: "Press Start 2P";
+    }
+    .ground {
+      height: 64px;
+      background-image: url(/img/ground-tile.png);      
+    }
+  </style>
 
+  <section id="latest-episode" class="mx-20 p-4 pt-8 space-y-4 relative z-50" style="top: 4px">
+    <img class="absolute" style="top: -104px; right: 0" src="/img/bush.png" alt="Bush decoration" />
+    <img class="absolute" style="top: -148px; left: 0" src="/img/duosaurus.png" alt="Two dinos" />
+    <img class="absolute" style="top: -165px; left: 200px" src="/img/bluesaurus.png" alt="One blue dino" />
+    <h3 class="font-bold">{{ episodes[0].data.title | safe }}</h3>
+    <p class="text-xl leading-none">
+      {{ episodes[0].data.summary | safe }}
+    </p>
+    <audio controls="controls" src="{{ episodes[0].data.file }}">
+      Selaimesi ei tue audio-elementtiä.
+    </audio>
+  </section>
+
+  <div class="relative z-10">
+
+    <div class="bg absolute w-full">
+      <div class="h-full bg-cover w-full absolute z-20" style="background-image: url(/img/BG2.png)"></div>
+      <div class="h-full bg-cover w-full absolute z-30" style="background-image: url(/img/BG3.png)"></div>
+      <div class="h-full bg-cover w-full absolute z-10" style="background-image: url(/img/BG1.png)"></div>
+    </div>
+
+    <div class="ground relative z-40 w-full"></div>
+
+    <section class="relative z-40 px-12 py-8" style="background-color: #8e573b">
+      <h2 class="mb-8 font-bold">Edelliset jaksot</h2>
+      <ul class="grid grid-cols-3 gap-8">
+        {% for episode in episodes %}
+          <li class="p-4 rounded text-xl leading-none" style="background-color: rgb(255 255 255 / 20%)">
+            <time datetime="{{ episode.date | htmlDateString }}">{{ episode.date | readableDate }}</time>
+            <a href="{{ episode.url | url }}">{{ episode.data.title }}</a>
+          </li>
+        {% endfor %}
+      </ul>
+    </section>
+  </div>
 </div>

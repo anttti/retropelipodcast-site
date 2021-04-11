@@ -1,5 +1,5 @@
 ---
-title: 1. Retron merkitys
+title: 2. Toinen jakso
 length: 3541
 episode: 1
 author: Antti Mattila, Jarno Tuominen, Teemu Vänni

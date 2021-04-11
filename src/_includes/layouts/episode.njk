@@ -2,5 +2,8 @@
 layout: layouts/base.njk
 ---
 
-<h3>{{ publishDate | readableDate }}</h3>
-<p>{{ content | safe }}</p>
+<section class="prose">
+  <time>{{ publishDate | readableDate }}</time>
+  <h2>{{ title | safe }}</h2>
+  <p>{{ content | safe }}</p>
+</section>

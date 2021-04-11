@@ -1,15 +1,20 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <title>{{ title }}</title>
+    <title>{{ global.title }}</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="/assets/main.css"/>
   </head>
-  <body>
-    <header class="text-green-500">
-      Title:
-      {{ title }}
+  <body class="relative" style="background: #5381d3">
+    <header class="mb-32 px-10 py-5 bg-black flex relative">
+      <a href="/">
+        <img class="w-64" src="/img/text-logo.png" alt="{{ global.title }}"/>
+      </a>
+      <img class="absolute" style="width: 174px; right: 2.5rem; filter: drop-shadow(0 0.2rem 0.25rem rgba(0, 0, 0, 0.2)); transform: rotate(7deg)" src="/img/seal.png" alt="Seal of quality" />
     </header>
-    <main class="p-12">
+
+    <main class="relative">
       {{ content | safe }}
     </main>
   </body>
