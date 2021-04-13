@@ -24,6 +24,7 @@ layout: layouts/base.njk
     --light-ground: url("/img/light-ground.png");
     --light-text:#2f1400;
     --light-text-shadow: rgb(255 255 255 / 20%);
+    --light-decoration: url("/img/light-decoration.png");
 
     --dark-sky: #2e5a89;
     --dark-bg: #2e2c3b;
@@ -34,6 +35,7 @@ layout: layouts/base.njk
     --dark-ground: url("/img/dark-ground.png");
     --dark-text: white;
     --dark-text-shadow: rgb(0 0 0 / 20%);
+    --dark-decoration: url("/img/dark-decoration.png");
 
     --sky-bg: var(--light-sky);
     --episodes-bg: var(--light-bg);
@@ -44,6 +46,7 @@ layout: layouts/base.njk
     --ground-tile: var(--light-ground);
     --text: var(--light-text);
     --text-shadow: var(--light-text-shadow);
+    --decoration: var(--light-decoration);
   }
   .latest-episode {
     border: 64px solid;
@@ -77,6 +80,14 @@ layout: layouts/base.njk
   .episodes {
     background: var(--episodes-bg);
   }
+  .decoration {
+    width: 56px;
+    height: 40px;
+    background-image: var(--decoration);
+    position: absolute;
+    top: -104px;
+    right: 0;
+  }
 </style>
 
 <script>
@@ -93,6 +104,7 @@ function toggleTheme() {
   root.style.setProperty('--ground-tile', `var(--${isLight ? 'light' : 'dark'}-ground)`);
   root.style.setProperty('--text', `var(--${isLight ? 'light' : 'dark'}-text)`);
   root.style.setProperty('--text-shadow', `var(--${isLight ? 'light' : 'dark'}-text-shadow)`);
+  root.style.setProperty('--decoration', `var(--${isLight ? 'light' : 'dark'}-decoration)`);
 }
 </script>
 
@@ -123,12 +135,13 @@ function toggleTheme() {
       {% set episodes = collections.episodes | reverse %}
                     
       <section class="latest-episode mb-52 mx-auto p-4 space-y-4 max-w-xl relative z-50">
-        <img
+        <div class="decoration"></div>
+        <!-- <img
           class="absolute"
           style="top: -104px; right: 0"
           src="/img/bush.png"
           alt="Bush decoration"
-        />
+        /> -->
         <img
           class="absolute"
           style="top: -148px; left: 0"
@@ -161,19 +174,6 @@ function toggleTheme() {
           <div
             class="bg-3 h-full bg-bottom bg-contain bg-repeat-x w-full absolute z-30"
           ></div>
-
-          <!-- <div
-            class="h-full bg-bottom bg-contain bg-repeat-x w-full absolute z-10"
-            style="background-image: url(/img/background_0.png)"
-          ></div>
-          <div
-            class="h-full bg-bottom bg-contain bg-repeat-x w-full absolute z-20"
-            style="background-image: url(/img/background_1.png)"
-          ></div>
-          <div
-            class="h-full bg-bottom bg-contain bg-repeat-x w-full absolute z-30"
-            style="background-image: url(/img/background_2.png)"
-          ></div> -->
         </div>
 
         <div class="ground relative z-40 w-full"></div>
