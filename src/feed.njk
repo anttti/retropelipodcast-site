@@ -1,0 +1,59 @@
+---
+permalink: "/episodes/feed.xml"
+eleventyExcludeFromCollections: true
+sitemap:
+  exclude: yes
+---
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" xmlns:googleplay="http://www.google.com/schemas/play-podcasts/1.0" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <atom:link href="{{ global.url }}{{ global.feedPath }}" rel="self" title="MP3 Audio" type="application/atom+xml"/>
+    <title>{{ global.title | xmlEscape }}</title>
+    <link>{{ global.url }}</link>
+    <language>{{ global.language }}</language>
+    <copyright>&#169; 2021 - {{ global.buildDate | year }} {{ global.author }}</copyright>
+    <pubDate>{{ collections.episodes | collectionLastUpdatedDate }}</pubDate>
+    <lastBuildDate>{{ collections.episodes | collectionLastUpdatedDate }}</lastBuildDate>
+    <generator>Eleventy</generator>
+    <description>{{ global.description | xmlEscape }}</description>
+    <image>
+      <link>http://webbidevaus.fi</link>
+      <title>Webbidevaus.fi</title>
+      <url>https://image.simplecastcdn.com/images/c323bddb-1521-4c01-9f09-f3b876b9877e/89bdabf8-b0fa-475b-a2c2-5e6a55975087/3000x3000/1518464110artwork.jpg?aid=rss_feed</url>
+    </image>
+    <itunes:summary>{{ global.desrciption | xmlEscape }}</itunes:summary>
+    <itunes:author>{{ global.author | xmlEscape }}</itunes:author>
+    <itunes:explicit>{{ global.explicit }}</itunes:explicit>
+    <itunes:type>{{ global.type }}</itunes:type>
+    <itunes:image href="{{ global.channelImage }}" />
+    <itunes:keywords>{{ global.keywords }}</itunes:keywords>
+    <itunes:owner>
+      <itunes:name>{{ global.owner.name }}</itunes:name>
+      <itunes:email>{{ global.owner.email }}</itunes:email>
+    </itunes:owner>
+    <itunes:category text="{{ global.category }}" />
+    <itunes:new-feed-url>{{ global.url }}{{ global.feedPath }}</itunes:new-feed-url>
+    {% for episode in collections.episodes | reverse %}
+    <item>
+      <guid>{{ episode.data.media.episode | link }}</guid>
+      <title>{{ episode.data.media.title | xmlEscape }}</title>
+      <description>{{ episode | shownotes | safe }}</description>
+      <pubDate>{{ episode.data.media.publishDate | rfc822Date }}</pubDate>
+      <author>{{ episode.data.media.author | orDefaultAuthor }} </author>
+      <link>{{ episode.data.media.episode | link }}</link>
+      <content:encoded>{{ episode | shownotes | safe }}</content:encoded>
+      <enclosure url="{{ episode.data.media.content }}" length="{{ episode.data.media.fileSize }}" type="audio/mpeg" />
+
+      <itunes:title>{{ episode.data.media.title | xmlEscape }}</itunes:title>
+      <itunes:author>{{ episode.data.media.author | orDefaultAuthor }} </itunes:author>
+      <itunes:duration>{{ episode.data.media.duration }}</itunes:duration>
+      <itunes:summary></itunes:summary>
+      <itunes:subtitle></itunes:subtitle>
+      <itunes:explicit>{{ episode.data.media.explicit | orDefaultExplicit }}</itunes:explicit>
+      <itunes:episodeType>{{ episode.data.media.episodeType | orDefaultType }}</itunes:episodeType>
+      <itunes:episode>{{ episode.data.media.episode }}</itunes:episode>
+      <itunes:image href="{{ episode.data.media.image | orDefaultImage }}" />
+    </item>
+    {% endfor %}
+  </channel>
+</rss>

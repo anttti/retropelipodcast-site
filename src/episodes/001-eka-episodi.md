@@ -1,15 +1,14 @@
 ---
-title: 1. Retron merkitys
-length: 3541
-episode: 1
-author: Antti Mattila, Jarno Tuominen, Teemu Vänni
-summary:
-subtitle:
-explicit: no
-episodeType: full
-publishDate: 2021-01-15T20:34:25.052Z
-link: https://retropelipodcast.com/1
-file: https://retropelipodcast.com/1.mp3
+media:
+  episode: 1
+  title: Retron merkitys
+  summary:
+  subtitle:
+  publishDate: 2021-01-15T20:34:25.052Z
+  content: /podcasts/dj-cruze-podcast-episode-57-june-2011.mp3
+  duration: 4230
+  fileSize: 67973718
+permalink: "/1.html"
 layout: layouts/episode.njk
 ---
 

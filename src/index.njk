@@ -136,12 +136,6 @@ function toggleTheme() {
                     
       <section class="latest-episode mb-52 mx-auto p-4 space-y-4 max-w-xl relative z-50">
         <div class="decoration"></div>
-        <!-- <img
-          class="absolute"
-          style="top: -104px; right: 0"
-          src="/img/bush.png"
-          alt="Bush decoration"
-        /> -->
         <img
           class="absolute"
           style="top: -148px; left: 0"
@@ -186,11 +180,11 @@ function toggleTheme() {
               class="p-4 rounded text-2xl leading-none"
               style="background-color: rgb(255 255 255 / 20%)"
             >
-              <h3>E: {{ episode.episode }}</h3>
+              <h3>E: {{ episode.data.media.episode }}</h3>
               <time datetime="{{ episode.date | htmlDateString }}">{{
                 episode.date | readableDate
               }}</time>
-              <a href="{{ episode.url | url }}">{{ episode.data.title }}</a>
+              <a href="{{ episode.data.media.content | url }}">{{ episode.data.title }}</a>
             </li>
             {% endfor %}
           </ul>
