@@ -1,3 +1,87 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root {
+  --light-sky: #5381d3;
+  --light-bg: #8e573b;
+  --light-bg-1: url("/img/light-BG1.png");
+  --light-bg-2: url("/img/light-BG2.png");
+  --light-bg-3: url("/img/light-BG3.png");
+  --light-tile: url("/img/light-tile.png");
+  --light-ground: url("/img/light-ground.png");
+  --light-text: #2f1400;
+  --light-text-shadow: rgb(255 255 255 / 20%);
+  --light-decoration: url("/img/light-decoration.png");
+
+  --dark-sky: #2e5a89;
+  --dark-bg: #2e2c3b;
+  --dark-bg-1: url("/img/background_0.png");
+  --dark-bg-2: url("/img/background_1.png");
+  --dark-bg-3: url("/img/background_2.png");
+  --dark-tile: url("/img/dark-tile.png");
+  --dark-ground: url("/img/dark-ground.png");
+  --dark-text: white;
+  --dark-text-shadow: rgb(0 0 0 / 20%);
+  --dark-decoration: url("/img/dark-decoration.png");
+
+  --sky-bg: var(--light-sky);
+  --episodes-bg: var(--light-bg);
+  --bg-1: var(--light-bg-1);
+  --bg-2: var(--light-bg-2);
+  --bg-3: var(--light-bg-3);
+  --border-tile: var(--light-tile);
+  --ground-tile: var(--light-ground);
+  --text: var(--light-text);
+  --text-shadow: var(--light-text-shadow);
+  --decoration: var(--light-decoration);
+}
+
+body {
+  font-family: "VT323", monospace;
+  text-shadow: 1px 1px var(--text-shadow);
+}
+h2,
+h3 {
+  font-family: "Press Start 2P", monospace;
+}
+.bg {
+  top: -800px;
+  height: 800px;
+}
+.quality-seal {
+  width: 174px;
+  right: 2.5rem;
+  filter: drop-shadow(0 0.2rem 0.25rem rgba(0, 0, 0, 0.2));
+  transform: rotate(7deg);
+}
+.latest-episode {
+  border: 64px solid;
+  border-image-source: var(--border-tile);
+  border-image-repeat: round;
+  border-image-slice: 64 fill;
+}
+.bg-1 {
+  background-image: var(--bg-1);
+}
+.bg-2 {
+  background-image: var(--bg-2);
+}
+.bg-3 {
+  background-image: var(--bg-3);
+}
+.ground {
+  height: 64px;
+  background-image: var(--ground-tile);
+}
+.episodes {
+  background: var(--episodes-bg);
+}
+.decoration {
+  width: 56px;
+  height: 40px;
+  background-image: var(--decoration);
+  position: absolute;
+  top: -104px;
+  right: 0;
+}

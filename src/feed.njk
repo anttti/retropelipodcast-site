@@ -17,9 +17,9 @@ sitemap:
     <generator>Eleventy</generator>
     <description>{{ global.description | xmlEscape }}</description>
     <image>
-      <link>http://webbidevaus.fi</link>
-      <title>Webbidevaus.fi</title>
-      <url>https://image.simplecastcdn.com/images/c323bddb-1521-4c01-9f09-f3b876b9877e/89bdabf8-b0fa-475b-a2c2-5e6a55975087/3000x3000/1518464110artwork.jpg?aid=rss_feed</url>
+      <link>{{ global.url }}</link>
+      <title>{{ global.title | xmlEscape }}</title>
+      <url>{{ global.url }}{{ global.feedPath }}</url>
     </image>
     <itunes:summary>{{ global.desrciption | xmlEscape }}</itunes:summary>
     <itunes:author>{{ global.author | xmlEscape }}</itunes:author>
@@ -36,19 +36,18 @@ sitemap:
     {% for episode in collections.episodes | reverse %}
     <item>
       <guid>{{ episode.data.media.episode | link }}</guid>
-      <title>{{ episode.data.media.title | xmlEscape }}</title>
+      <title>{{ episode.data.media.episode }}. {{ episode.data.media.title | xmlEscape }}</title>
       <description>{{ episode | shownotes | safe }}</description>
       <pubDate>{{ episode.data.media.publishDate | rfc822Date }}</pubDate>
       <author>{{ episode.data.media.author | orDefaultAuthor }} </author>
       <link>{{ episode.data.media.episode | link }}</link>
       <content:encoded>{{ episode | shownotes | safe }}</content:encoded>
       <enclosure url="{{ episode.data.media.content }}" length="{{ episode.data.media.fileSize }}" type="audio/mpeg" />
-
       <itunes:title>{{ episode.data.media.title | xmlEscape }}</itunes:title>
       <itunes:author>{{ episode.data.media.author | orDefaultAuthor }} </itunes:author>
       <itunes:duration>{{ episode.data.media.duration }}</itunes:duration>
-      <itunes:summary></itunes:summary>
-      <itunes:subtitle></itunes:subtitle>
+      <itunes:summary>{{ episode.data.media.summary }}</itunes:summary>
+      <itunes:subtitle>{{ episode.data.media.summary }}</itunes:subtitle>
       <itunes:explicit>{{ episode.data.media.explicit | orDefaultExplicit }}</itunes:explicit>
       <itunes:episodeType>{{ episode.data.media.episodeType | orDefaultType }}</itunes:episodeType>
       <itunes:episode>{{ episode.data.media.episode }}</itunes:episode>

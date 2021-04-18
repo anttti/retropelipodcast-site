@@ -8,7 +8,42 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" type="text/css" href="/assets/main.css" />
+    <script>
+      let isLight = true;
+      function toggleTheme() {
+        isLight = !isLight;
+        const root = document.documentElement;
+        root.style.setProperty('--sky-bg', `var(--${isLight ? 'light' : 'dark'}-sky)`);
+        root.style.setProperty('--episodes-bg', `var(--${isLight ? 'light' : 'dark'}-bg)`);
+        root.style.setProperty('--bg-1', `var(--${isLight ? 'light' : 'dark'}-bg-1)`);
+        root.style.setProperty('--bg-2', `var(--${isLight ? 'light' : 'dark'}-bg-2)`);
+        root.style.setProperty('--bg-3', `var(--${isLight ? 'light' : 'dark'}-bg-3)`);
+        root.style.setProperty('--border-tile', `var(--${isLight ? 'light' : 'dark'}-tile)`);
+        root.style.setProperty('--ground-tile', `var(--${isLight ? 'light' : 'dark'}-ground)`);
+        root.style.setProperty('--text', `var(--${isLight ? 'light' : 'dark'}-text)`);
+        root.style.setProperty('--text-shadow', `var(--${isLight ? 'light' : 'dark'}-text-shadow)`);
+        root.style.setProperty('--decoration', `var(--${isLight ? 'light' : 'dark'}-decoration)`);
+      }
+      </script>
   </head>
 
-  {{ content | safe }}
+  <body class="flex flex-col min-h-screen justify-between relative bg-sky text-text light-bg">
+    <header class="px-10 py-5 bg-black flex relative">
+      <a href="/">
+        <img class="w-64" src="/img/text-logo.png" alt="{{ global.title }}" />
+      </a>
+      <label>
+        <input type="checkbox" onchange="toggleTheme()"/>
+        Theme
+      </label>
+      <img
+        class="quality-seal absolute"
+        src="/img/seal.png"
+        alt="Seal of quality"
+      />
+    </header>
+
+    {{ content | safe }}
+
+  </body>
 </html>

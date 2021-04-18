@@ -2,194 +2,65 @@
 layout: layouts/base.njk
 ---
 
-<style>
-  body {
-    font-family: "VT323";
-  }
-  h2,
-  h3 {
-    font-family: "Press Start 2P";
-  }
-  .bg {
-    top: -800px;
-    height: 800px;
-  }
-  :root {
-    --light-sky:#5381d3; 
-    --light-bg: #8e573b;
-    --light-bg-1: url("/img/light-BG1.png");
-    --light-bg-2: url("/img/light-BG2.png");
-    --light-bg-3: url("/img/light-BG3.png");
-    --light-tile: url("/img/light-tile.png");
-    --light-ground: url("/img/light-ground.png");
-    --light-text:#2f1400;
-    --light-text-shadow: rgb(255 255 255 / 20%);
-    --light-decoration: url("/img/light-decoration.png");
+<main class="relative">
+  <div class="relative z-40 pt-40">
+    {% set episodes = collections.episodes | reverse %}
+                  
+    <section class="latest-episode mb-52 mx-auto p-4 space-y-4 max-w-xl relative z-50">
+      <div class="decoration"></div>
+      <img
+        class="absolute"
+        style="top: -148px; left: 0"
+        src="/img/duosaurus.png"
+        alt="Two dinos"
+      />
+      <img
+        class="absolute"
+        style="top: -165px; left: 200px"
+        src="/img/bluesaurus.png"
+        alt="One blue dino"
+      />
+      <h3 class="font-bold">{{ episodes[0].data.media.episode }}. {{ episodes[0].data.media.title | safe }}</h3>
+      <p class="text-2xl leading-none">
+        {{ episodes[0].data.media.summary | safe }}
+      </p>
+      <audio controls="controls" src="{{ episodes[0].data.file }}">
+        Selaimesi ei tue audio-elementtiä.
+      </audio>
+    </section>
 
-    --dark-sky: #2e5a89;
-    --dark-bg: #2e2c3b;
-    --dark-bg-1: url("/img/background_0.png");
-    --dark-bg-2: url("/img/background_1.png");
-    --dark-bg-3: url("/img/background_2.png");
-    --dark-tile: url("/img/dark-tile.png");
-    --dark-ground: url("/img/dark-ground.png");
-    --dark-text: white;
-    --dark-text-shadow: rgb(0 0 0 / 20%);
-    --dark-decoration: url("/img/dark-decoration.png");
-
-    --sky-bg: var(--light-sky);
-    --episodes-bg: var(--light-bg);
-    --bg-1: var(--light-bg-1);
-    --bg-2: var(--light-bg-2);
-    --bg-3: var(--light-bg-3);
-    --border-tile: var(--light-tile);
-    --ground-tile: var(--light-ground);
-    --text: var(--light-text);
-    --text-shadow: var(--light-text-shadow);
-    --decoration: var(--light-decoration);
-  }
-  .latest-episode {
-    border: 64px solid;
-    border-image-source: var(--border-tile);
-    border-image-repeat: round;
-    border-image-slice: 64 fill;
-  }
-  body {
-    background: var(--sky-bg);
-  }
-  h2,
-  h3,
-  p,
-  body {
-    color: var(--text);
-    text-shadow: 1px 1px var(--text-shadow);
-  } 
-  .bg-1 {
-    background-image: var(--bg-1);
-  }
-  .bg-2 {
-    background-image: var(--bg-2);
-  }
-  .bg-3 {
-    background-image: var(--bg-3);
-  }
-  .ground {
-    height: 64px;
-    background-image: var(--ground-tile);
-  }
-  .episodes {
-    background: var(--episodes-bg);
-  }
-  .decoration {
-    width: 56px;
-    height: 40px;
-    background-image: var(--decoration);
-    position: absolute;
-    top: -104px;
-    right: 0;
-  }
-</style>
-
-<script>
-let isLight = true;
-function toggleTheme() {
-  isLight = !isLight;
-  const root = document.documentElement;
-  root.style.setProperty('--sky-bg', `var(--${isLight ? 'light' : 'dark'}-sky)`);
-  root.style.setProperty('--episodes-bg', `var(--${isLight ? 'light' : 'dark'}-bg)`);
-  root.style.setProperty('--bg-1', `var(--${isLight ? 'light' : 'dark'}-bg-1)`);
-  root.style.setProperty('--bg-2', `var(--${isLight ? 'light' : 'dark'}-bg-2)`);
-  root.style.setProperty('--bg-3', `var(--${isLight ? 'light' : 'dark'}-bg-3)`);
-  root.style.setProperty('--border-tile', `var(--${isLight ? 'light' : 'dark'}-tile)`);
-  root.style.setProperty('--ground-tile', `var(--${isLight ? 'light' : 'dark'}-ground)`);
-  root.style.setProperty('--text', `var(--${isLight ? 'light' : 'dark'}-text)`);
-  root.style.setProperty('--text-shadow', `var(--${isLight ? 'light' : 'dark'}-text-shadow)`);
-  root.style.setProperty('--decoration', `var(--${isLight ? 'light' : 'dark'}-decoration)`);
-}
-</script>
-
-<body class="flex flex-col min-h-screen justify-between relative light-bg">
-  <header class="px-10 py-5 bg-black flex relative">
-    <a href="/">
-      <img class="w-64" src="/img/text-logo.png" alt="{{ global.title }}" />
-    </a>
-    <label>
-      <input type="checkbox" onchange="toggleTheme()"/>
-      Theme
-    </label>
-    <img
-      class="absolute"
-      style="
-        width: 174px;
-        right: 2.5rem;
-        filter: drop-shadow(0 0.2rem 0.25rem rgba(0, 0, 0, 0.2));
-        transform: rotate(7deg);
-      "
-      src="/img/seal.png"
-      alt="Seal of quality"
-    />
-  </header>
-
-  <main class="relative">
-    <div class="relative z-40 pt-40">
-      {% set episodes = collections.episodes | reverse %}
-                    
-      <section class="latest-episode mb-52 mx-auto p-4 space-y-4 max-w-xl relative z-50">
-        <div class="decoration"></div>
-        <img
-          class="absolute"
-          style="top: -148px; left: 0"
-          src="/img/duosaurus.png"
-          alt="Two dinos"
-        />
-        <img
-          class="absolute"
-          style="top: -165px; left: 200px"
-          src="/img/bluesaurus.png"
-          alt="One blue dino"
-        />
-        <h3 class="font-bold">{{ episodes[0].data.title | safe }}</h3>
-        <p class="text-2xl leading-none">
-          {{ episodes[0].data.summary | safe }}
-        </p>
-        <audio controls="controls" src="{{ episodes[0].data.file }}">
-          Selaimesi ei tue audio-elementtiä.
-        </audio>
-      </section>
-
-      <div class="relative z-10">
-        <div class="bg absolute w-full">
-          <div
-            class="bg-1 h-full bg-bottom bg-contain bg-repeat-x w-full absolute z-10"
-          ></div>
-          <div
-            class="bg-2 h-full bg-bottom bg-contain bg-repeat-x w-full absolute z-20"
-          ></div>
-          <div
-            class="bg-3 h-full bg-bottom bg-contain bg-repeat-x w-full absolute z-30"
-          ></div>
-        </div>
-
-        <div class="ground relative z-40 w-full"></div>
-
-        <section class="episodes relative z-40 px-12 py-8">
-          <h2 class="mb-8 font-bold">Edelliset jaksot</h2>
-          <ul class="grid grid-cols-3 gap-8">
-            {% for episode in episodes %}
-            <li
-              class="p-4 rounded text-2xl leading-none"
-              style="background-color: rgb(255 255 255 / 20%)"
-            >
-              <h3>E: {{ episode.data.media.episode }}</h3>
-              <time datetime="{{ episode.date | htmlDateString }}">{{
-                episode.date | readableDate
-              }}</time>
-              <a href="{{ episode.data.media.content | url }}">{{ episode.data.title }}</a>
-            </li>
-            {% endfor %}
-          </ul>
-        </section>
+    <div class="relative z-10">
+      <div class="bg absolute w-full">
+        <div
+          class="bg-1 h-full bg-bottom bg-contain bg-repeat-x w-full absolute z-10"
+        ></div>
+        <div
+          class="bg-2 h-full bg-bottom bg-contain bg-repeat-x w-full absolute z-20"
+        ></div>
+        <div
+          class="bg-3 h-full bg-bottom bg-contain bg-repeat-x w-full absolute z-30"
+        ></div>
       </div>
+
+      <div class="ground relative z-40 w-full"></div>
+
+      <section class="episodes relative z-40 px-12 py-8">
+        <h2 class="mb-8 font-bold">Edelliset jaksot</h2>
+        <ul class="grid grid-cols-3 gap-8">
+          {% for episode in episodes %}
+          <li
+            class="p-4 rounded text-2xl leading-none"
+            style="background-color: rgb(255 255 255 / 20%)"
+          >
+            <h3>E:{{ episode.data.media.episode }}</h3>
+            <time datetime="{{ episode.date | htmlDateString }}">{{
+              episode.date | readableDate
+            }}</time>
+            <a href="{{ episode.data.permalink | url }}">{{ episode.data.media.title }}</a>
+          </li>
+          {% endfor %}
+        </ul>
+      </section>
     </div>
-  </main>
-</body>
+  </div>
+</main>
