@@ -27,7 +27,7 @@
       </script>
   </head>
 
-  <body class="flex flex-col min-h-screen justify-between relative bg-sky text-text light-bg">
+  <body class="flex flex-col min-h-screen justify-between relative z-50 bg-sky text-text light-bg">
     <header class="px-10 py-5 bg-black flex relative">
       <a href="/">
         <img class="w-64" src="/img/text-logo.png" alt="{{ global.title }}" />
@@ -37,10 +37,15 @@
         Theme
       </label>
       <img
+        class="gamepad absolute z-50"
+        src="/img/gamepad.png"
+        alt="Peliohjain"
+      />
+      <!-- <img
         class="quality-seal absolute"
         src="/img/seal.png"
         alt="Seal of quality"
-      />
+      /> -->
     </header>
 
     {{ content | safe }}
