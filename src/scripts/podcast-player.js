@@ -166,13 +166,6 @@ class PodcastPlayer extends LitElement {
       "loadedmetadata",
       this.handleLoadedMetadata.bind(this)
     );
-
-    window.addEventListener(
-      "DOMContentLoaded",
-      this.timeJump.bind(this),
-      false
-    );
-    window.addEventListener("hashchange", this.timeJump.bind(this), false);
   }
 
   handleLoadedMetadata() {
@@ -181,35 +174,6 @@ class PodcastPlayer extends LitElement {
 
   handleTimeUpdate(e) {
     this.currentTime = this.audio.currentTime;
-  }
-
-  timeJump(event) {
-    let params = new URLSearchParams(window.location.hash.substring(1));
-    let t = params.get("t") || 0;
-
-    var timestamp = this.parseTime(t);
-
-    if (t) {
-      // Preload the media
-      this.audio.setAttribute("preload", "true");
-      // Set the current time. Will update if playing. Will fail if paused.
-      this.audio.currentTime = timestamp;
-      // If the media is able to play, play.
-      this.audio.addEventListener(
-        "canplay",
-        () => {
-          /* only start the player if it is not already playing */
-          if (!this.audio.paused) {
-            return false;
-          }
-
-          this.audio.currentTime = timestamp;
-          this.audio.play();
-          this.classList.add("is-playing");
-        },
-        false
-      );
-    }
   }
 
   parseTime(str) {
