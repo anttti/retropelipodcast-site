@@ -22,9 +22,12 @@
         root.style.setProperty('--ground-tile', `var(--${isLight ? 'light' : 'dark'}-ground)`);
         root.style.setProperty('--text', `var(--${isLight ? 'light' : 'dark'}-text)`);
         root.style.setProperty('--text-shadow', `var(--${isLight ? 'light' : 'dark'}-text-shadow)`);
+        root.style.setProperty('--text-contrast', `var(--${isLight ? 'light' : 'dark'}-text-contrast)`);
+        root.style.setProperty('--text-transparent', `var(--${isLight ? 'light' : 'dark'}-text-transparent)`);
         root.style.setProperty('--decoration', `var(--${isLight ? 'light' : 'dark'}-decoration)`);
       }
-      </script>
+    </script>
+    <script type="module" src="/scripts/podcast-player.js"></script>
   </head>
 
   <body class="flex flex-col min-h-screen justify-between relative z-50 bg-sky text-text light-bg">

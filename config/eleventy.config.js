@@ -62,6 +62,7 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addFilter("orDefaultImage", (image) => image || global.image);
 
   eleventyConfig.addPassthroughCopy({ "src/img": "img" });
+  eleventyConfig.addPassthroughCopy({ "src/scripts": "scripts" });
 
   return {
     dir: { input: "src", output: "_site" },

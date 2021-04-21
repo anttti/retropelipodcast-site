@@ -10,8 +10,10 @@
   --light-bg-3: url("/img/light-BG3.png");
   --light-tile: url("/img/light-tile.png");
   --light-ground: url("/img/light-ground.png");
-  --light-text: #2f1400;
+  --light-text: rgb(47 20 0);
   --light-text-shadow: rgb(255 255 255 / 20%);
+  --light-text-contrast: var(--light-bg);
+  --light-text-transparent: rgb(47 20 0 / 20%);
   --light-decoration: url("/img/light-decoration.png");
 
   --dark-sky: #2e5a89;
@@ -23,6 +25,8 @@
   --dark-ground: url("/img/dark-ground.png");
   --dark-text: white;
   --dark-text-shadow: rgb(0 0 0 / 20%);
+  --dark-text-contrast: var(--dark-bg);
+  --dark-text-transparent: rgb(255 255 255 / 20%);
   --dark-decoration: url("/img/dark-decoration.png");
 
   --sky-bg: var(--light-sky);
@@ -34,7 +38,13 @@
   --ground-tile: var(--light-ground);
   --text: var(--light-text);
   --text-shadow: var(--light-text-shadow);
+  --text-contrast: var(--light-text-contrast);
+  --text-transparent: var(--light-text-transparent);
   --decoration: var(--light-decoration);
+
+  --player-highlight: var(--text);
+  --player-highlight-light: var(--text-transparent);
+  --player-contrast: var(--text-contrast);
 }
 
 body {
@@ -52,6 +62,7 @@ h3 {
 .gamepad {
   width: 280px;
   right: 2.5rem;
+  top: 2rem;
   filter: drop-shadow(0 0.2rem 0.25rem rgba(0, 0, 0, 0.2));
   transform: rotate(7deg);
 }
