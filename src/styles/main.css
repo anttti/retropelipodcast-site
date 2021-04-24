@@ -121,10 +121,15 @@ h3 {
   right: 0;
 }
 .latest-episode {
-  border: 64px solid;
+  border: 32px solid;
   border-image-source: var(--border-tile);
   border-image-repeat: round;
   border-image-slice: 64 fill;
+}
+.ground {
+  height: 32px;
+  background-image: var(--ground-tile);
+  background-size: 32px;
 }
 @media (min-width: 500px) {
   .dino {
@@ -137,6 +142,13 @@ h3 {
     top: -155px;
     left: 200px;
   }
+  .latest-episode {
+    border-width: 64px;
+  }
+  .ground {
+    height: 64px;
+    background-size: auto;
+  }
 }
 .bg-1 {
   background-image: var(--bg-1);
@@ -146,10 +158,6 @@ h3 {
 }
 .bg-3 {
   background-image: var(--bg-3);
-}
-.ground {
-  height: 64px;
-  background-image: var(--ground-tile);
 }
 .episodes,
 .footer {
