@@ -40,12 +40,12 @@
   </head>
 
   <body class="flex flex-col min-h-screen justify-between relative z-50 bg-sky text-text light-bg">
-    <header class="px-10 py-5 bg-black flex relative">
+    <header class="px-10 py-5 bg-black flex relative justify-center md:justify-start">
       <a href="/">
         <img class="w-64" src="/img/text-logo.png" alt="{{ global.title }}" />
       </a>
       <img
-        class="gamepad absolute z-50"
+        class="gamepad absolute z-50 hidden md:block"
         src="/img/gamepad.png"
         alt="Peliohjain"
         onclick="toggleTheme()"
