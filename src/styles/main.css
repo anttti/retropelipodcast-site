@@ -102,11 +102,33 @@ h3 {
   filter: drop-shadow(0 0.2rem 0.25rem rgba(0, 0, 0, 0.2));
   transform: rotate(7deg);
 }
+.dino {
+  height: 34px;
+}
+.dino-duo {
+  top: -64px;
+}
+.dino-solo {
+  top: -78px;
+  left: 100px;
+}
 .latest-episode {
   border: 64px solid;
   border-image-source: var(--border-tile);
   border-image-repeat: round;
   border-image-slice: 64 fill;
+}
+@media (min-width: 500px) {
+  .dino {
+    height: 68px;
+  }
+  .dino-duo {
+    top: -132px;
+  }
+  .dino-solo {
+    top: -155px;
+    left: 200px;
+  }
 }
 .bg-1 {
   background-image: var(--bg-1);
