@@ -4,7 +4,7 @@ layout: layouts/base.njk
 
 <main class="relative">
   <div class="relative z-40 pt-40">
-    <section class="latest-episode mb-52 mx-auto p-4 max-w-xl relative z-50">
+    <section class="latest-episode mb-52 mx-auto p-4 max-w-3xl relative z-50">
       <div class="decoration"></div>
       <img
         class="absolute"
@@ -18,21 +18,25 @@ layout: layouts/base.njk
         src="/img/bluesaurus.png"
         alt="One blue dino"
       />
-      <h3 class="mb-4 font-bold">
+      <h3 class="mt-4 font-bold text-center">
         {{ media.episode }}.
         {{ media.title | safe }}
       </h3>
-      <p class="mb-4 text-2xl leading-none">
+
+      <div class="max-w-lg mx-auto my-8">
+        <podcast-player>
+          <audio
+            controls="controls"
+            preload="none"
+            width="100%"
+            src="{{ media.data.media.content }}"
+          ></audio>
+        </podcast-player>
+      </div>
+
+      <div class="shownotes mt-4 space-y-2">
         {{ content | safe }}
-      </p>
-      <podcast-player>
-        <audio
-          controls="controls"
-          preload="none"
-          width="100%"
-          src="{{ media.data.media.content }}"
-        ></audio>
-      </podcast-player>
+      </div>
     </section>
 
     <div class="relative z-10">

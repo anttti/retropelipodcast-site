@@ -133,3 +133,28 @@ h3 {
   top: -104px;
   right: 0;
 }
+
+/* Shownote (classless HTML) styles */
+.shownotes :is(h1, h2, h3, h4, h5, h6) {
+  @apply mt-6;
+}
+
+.shownotes :is(p, ol, ul, li) {
+  @apply text-2xl leading-none;
+}
+
+.shownotes :is(ol, ul) {
+  @apply list-inside;
+}
+
+.shownotes ol {
+  @apply list-decimal;
+}
+
+.shownotes ul {
+  @apply list-disc;
+}
+
+.shownotes a {
+  @apply underline;
+}

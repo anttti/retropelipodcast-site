@@ -1,0 +1,12 @@
+{
+  "name": "mp3-duration",
+  "version": "1.0.0",
+  "description": "",
+  "main": "duration.js",
+  "scripts": {},
+  "author": "Antti Mattila",
+  "license": "MIT",
+  "dependencies": {
+    "mp3-duration": "^1.1.0"
+  }
+}
