@@ -18,13 +18,19 @@ class PodcastPlayer extends LitElement {
       .podcast-player {
         background: var(--player-background, rgb(255 255 255 / 0.2));
         display: grid;
-        grid-template-columns: 1fr 1fr 1fr;
-        grid-template-rows: 3rem 1.5rem 3rem;
+        grid-template-columns: 1fr;
         gap: 0.5rem 1rem;
         width: 100%;
         padding: 1rem;
         box-sizing: border-box;
         border-radius: 3px;
+      }
+
+      @media (min-width: 500px) {
+        .podcast-player {
+          grid-template-columns: 1fr 1fr 1fr;
+          grid-template-rows: 3rem 1.5rem 3rem;
+        }
       }
 
       .sr-only {
@@ -74,6 +80,7 @@ class PodcastPlayer extends LitElement {
 
       .button-play {
         background: var(--player-highlight);
+        height: 50px;
       }
 
       .button-secondary {
@@ -83,9 +90,11 @@ class PodcastPlayer extends LitElement {
         border-color: var(--player-focus);
       }
 
-      .progress-meter {
-        grid-row: 2;
-        grid-column: 1 / -1;
+      @media (min-width: 500px) {
+        .progress-meter {
+          grid-row: 2;
+          grid-column: 1 / -1;
+        }
       }
 
       input[type="range"] {
@@ -122,19 +131,29 @@ class PodcastPlayer extends LitElement {
         background: white;
       }
 
-      time {
-        grid-row: 3;
+      .time {
+        text-align: center;
       }
 
-      .duration {
-        grid-column: 3;
-        justify-self: end;
-      }
+      @media (min-width: 500px) {
+        .button-play {
+          height: auto;
+        }
 
-      .button-speed {
-        min-width: 3em;
-        grid-column: 2;
-        grid-row: 3;
+        .time {
+          text-align: left;
+        }
+
+        .duration {
+          grid-column: 3;
+          justify-self: end;
+        }
+
+        .button-speed {
+          min-width: 3em;
+          grid-column: 2;
+          grid-row: 3;
+        }
       }
 
       .button-speed:after {
