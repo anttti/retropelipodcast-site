@@ -112,6 +112,14 @@ h3 {
   top: -78px;
   left: 100px;
 }
+.decoration {
+  width: 56px;
+  height: 40px;
+  background-image: var(--decoration);
+  position: absolute;
+  top: -104px;
+  right: 0;
+}
 .latest-episode {
   border: 64px solid;
   border-image-source: var(--border-tile);
@@ -146,14 +154,6 @@ h3 {
 .episodes,
 .footer {
   background: var(--episodes-bg);
-}
-.decoration {
-  width: 56px;
-  height: 40px;
-  background-image: var(--decoration);
-  position: absolute;
-  top: -104px;
-  right: 0;
 }
 
 /* Shownote (classless HTML) styles */
