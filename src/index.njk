@@ -3,23 +3,11 @@ layout: layouts/base.njk
 ---
 
 <main class="relative">
-  <div class="relative z-40 pt-40">
+  <div class="relative z-40 pt-20 sm:pt-40">
     {% set episodes = collections.episodes | reverse %}
 
-    <section class="latest-episode mb-52 mx-auto p-4 max-w-xl relative z-50">
-      <div class="decoration"></div>
-      <img
-        class="absolute"
-        style="top: -132px; left: 0"
-        src="/img/duosaurus.png"
-        alt="Two dinos"
-      />
-      <img
-        class="absolute"
-        style="top: -155px; left: 200px"
-        src="/img/bluesaurus.png"
-        alt="One blue dino"
-      />
+    <section class="latest-episode mb-8 md:mb-52 mx-2 sm:mx-auto py-2 sm:p-4 sm:max-w-xl relative z-50">
+      {% include '_dinos.njk' %}
       <h3 class="mb-4 font-bold">
         {{ episodes[0].data.media.episode }}.
         {{ episodes[0].data.media.title | safe }}
@@ -38,19 +26,7 @@ layout: layouts/base.njk
     </section>
 
     <div class="relative z-10">
-      <div class="bg absolute w-full">
-        <div
-          class="bg-1 h-full bg-bottom bg-contain bg-repeat-x w-full absolute z-10"
-        ></div>
-        <div
-          class="bg-2 h-full bg-bottom bg-contain bg-repeat-x w-full absolute z-20"
-        ></div>
-        <div
-          class="bg-3 h-full bg-bottom bg-contain bg-repeat-x w-full absolute z-30"
-        ></div>
-      </div>
-
-      <div class="ground relative z-40 w-full"></div>
+      {% include '_bg.njk' %}
 
       <section class="episodes relative z-40 px-12 py-8">
         <div class="max-w-screen-lg mx-auto">
