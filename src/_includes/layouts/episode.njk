@@ -4,30 +4,35 @@ layout: layouts/base.njk
 
 <main class="relative">
   <div class="relative z-40 pt-40">
-    <section
-      class="latest-episode mb-52 mx-auto p-4 space-y-4 max-w-xl relative z-50"
-    >
+    <section class="latest-episode mb-52 mx-auto p-4 max-w-xl relative z-50">
       <div class="decoration"></div>
       <img
         class="absolute"
-        style="top: -148px; left: 0"
+        style="top: -132px; left: 0"
         src="/img/duosaurus.png"
         alt="Two dinos"
       />
       <img
         class="absolute"
-        style="top: -165px; left: 200px"
+        style="top: -155px; left: 200px"
         src="/img/bluesaurus.png"
         alt="One blue dino"
       />
-      <h3 class="font-bold">{{ media.episode }}. {{ media.title | safe }}</h3>
-      <time>{{ media.publishDate | readableDate }}</time>
-      <section class="prose">
+      <h3 class="mb-4 font-bold">
+        {{ media.episode }}.
+        {{ media.title | safe }}
+      </h3>
+      <p class="mb-4 text-2xl leading-none">
         {{ content | safe }}
-      </section>
-      <audio controls="controls" src="{{ media.content }}">
-        Selaimesi ei tue audio-elementtiä.
-      </audio>
+      </p>
+      <podcast-player>
+        <audio
+          controls="controls"
+          preload="none"
+          width="100%"
+          src="{{ media.data.media.content }}"
+        ></audio>
+      </podcast-player>
     </section>
 
     <div class="relative z-10">

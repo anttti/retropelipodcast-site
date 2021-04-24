@@ -8,23 +8,29 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" type="text/css" href="/assets/main.css" />
+    <link rel="alternate" type="application/rss+xml" title="{{ global.title }} RSS" href="{{ global.url }}{{ global.feedpath }}">
     <script>
-      let isLight = true;
+      let isDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+      window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
+        isDark = e.matches ? "dark" : "light";
+      });
       function toggleTheme() {
-        isLight = !isLight;
+        isDark = !isDark;
         const root = document.documentElement;
-        root.style.setProperty('--sky-bg', `var(--${isLight ? 'light' : 'dark'}-sky)`);
-        root.style.setProperty('--episodes-bg', `var(--${isLight ? 'light' : 'dark'}-bg)`);
-        root.style.setProperty('--bg-1', `var(--${isLight ? 'light' : 'dark'}-bg-1)`);
-        root.style.setProperty('--bg-2', `var(--${isLight ? 'light' : 'dark'}-bg-2)`);
-        root.style.setProperty('--bg-3', `var(--${isLight ? 'light' : 'dark'}-bg-3)`);
-        root.style.setProperty('--border-tile', `var(--${isLight ? 'light' : 'dark'}-tile)`);
-        root.style.setProperty('--ground-tile', `var(--${isLight ? 'light' : 'dark'}-ground)`);
-        root.style.setProperty('--text', `var(--${isLight ? 'light' : 'dark'}-text)`);
-        root.style.setProperty('--text-shadow', `var(--${isLight ? 'light' : 'dark'}-text-shadow)`);
-        root.style.setProperty('--text-contrast', `var(--${isLight ? 'light' : 'dark'}-text-contrast)`);
-        root.style.setProperty('--text-transparent', `var(--${isLight ? 'light' : 'dark'}-text-transparent)`);
-        root.style.setProperty('--decoration', `var(--${isLight ? 'light' : 'dark'}-decoration)`);
+        root.style.setProperty('--sky-bg', `var(--${isDark ? 'dark' : 'light'}-sky)`);
+        root.style.setProperty('--episodes-bg', `var(--${isDark ? 'dark' : 'light'}-bg)`);
+        root.style.setProperty('--bg-1', `var(--${isDark ? 'dark' : 'light'}-bg-1)`);
+        root.style.setProperty('--bg-2', `var(--${isDark ? 'dark' : 'light'}-bg-2)`);
+        root.style.setProperty('--bg-3', `var(--${isDark ? 'dark' : 'light'}-bg-3)`);
+        root.style.setProperty('--border-tile', `var(--${isDark ? 'dark' : 'light'}-tile)`);
+        root.style.setProperty('--ground-tile', `var(--${isDark ? 'dark' : 'light'}-ground)`);
+        root.style.setProperty('--text', `var(--${isDark ? 'dark' : 'light'}-text)`);
+        root.style.setProperty('--text-shadow', `var(--${isDark ? 'dark' : 'light'}-text-shadow)`);
+        root.style.setProperty('--text-contrast', `var(--${isDark ? 'dark' : 'light'}-text-contrast)`);
+        root.style.setProperty('--text-transparent', `var(--${isDark ? 'dark' : 'light'}-text-transparent)`);
+        root.style.setProperty('--decoration', `var(--${isDark ? 'dark' : 'light'}-decoration)`);
+        root.style.setProperty('--focus', `var(--${isDark ? 'dark' : 'light'}-focus)`);
+        root.style.setProperty('--episode-bg', `var(--${isDark ? 'dark' : 'light'}-episode-bg)`);
       }
     </script>
     <script type="module" src="/scripts/podcast-player.js"></script>
@@ -35,20 +41,13 @@
       <a href="/">
         <img class="w-64" src="/img/text-logo.png" alt="{{ global.title }}" />
       </a>
-      <label>
-        <input type="checkbox" onchange="toggleTheme()"/>
-        Theme
-      </label>
       <img
         class="gamepad absolute z-50"
         src="/img/gamepad.png"
         alt="Peliohjain"
+        onclick="toggleTheme()"
       />
-      <!-- <img
-        class="quality-seal absolute"
-        src="/img/seal.png"
-        alt="Seal of quality"
-      /> -->
+
     </header>
 
     {{ content | safe }}

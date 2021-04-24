@@ -5,7 +5,7 @@ layout: layouts/base.njk
 <main class="relative">
   <div class="relative z-40 pt-40">
     {% set episodes = collections.episodes | reverse %}
-                  
+
     <section class="latest-episode mb-52 mx-auto p-4 max-w-xl relative z-50">
       <div class="decoration"></div>
       <img
@@ -20,12 +20,20 @@ layout: layouts/base.njk
         src="/img/bluesaurus.png"
         alt="One blue dino"
       />
-      <h3 class="mb-4 font-bold">{{ episodes[0].data.media.episode }}. {{ episodes[0].data.media.title | safe }}</h3>
+      <h3 class="mb-4 font-bold">
+        {{ episodes[0].data.media.episode }}.
+        {{ episodes[0].data.media.title | safe }}
+      </h3>
       <p class="mb-4 text-2xl leading-none">
         {{ episodes[0].data.media.summary | safe }}
       </p>
       <podcast-player>
-        <audio controls="controls" preload="none" width="100%" src="{{ episodes[0].data.media.content }}"></audio>
+        <audio
+          controls="controls"
+          preload="none"
+          width="100%"
+          src="{{ episodes[0].data.media.content }}"
+        ></audio>
       </podcast-player>
     </section>
 
@@ -45,22 +53,57 @@ layout: layouts/base.njk
       <div class="ground relative z-40 w-full"></div>
 
       <section class="episodes relative z-40 px-12 py-8">
-        <h2 class="mb-8 font-bold">Edelliset jaksot</h2>
-        <ul class="grid grid-cols-3 gap-8">
-          {% for episode in episodes %}
-          <li
-            class="p-4 rounded text-2xl leading-none"
-            style="background-color: rgb(255 255 255 / 20%)"
-          >
-            <h3>E:{{ episode.data.media.episode }}</h3>
-            <time datetime="{{ episode.date | htmlDateString }}">{{
-              episode.date | readableDate
-            }}</time>
-            <a href="{{ episode.data.permalink | url }}">{{ episode.data.media.title }}</a>
-          </li>
-          {% endfor %}
-        </ul>
+        <div class="max-w-screen-lg mx-auto">
+          <h2 class="mb-8 font-bold text-center">Edelliset jaksot</h2>
+          <ul class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {% for episode in episodes %}
+            <li class="p-4 rounded text-2xl leading-none bg-light-bg">
+              <h3 class="mb-2 text-sm">
+                <a href="{{ episode.data.permalink | url }}"
+                  >{{ episode.data.media.episode }}:
+                  {{ episode.data.media.title }}</a
+                >
+              </h3>
+              <time
+                class="mb-2 block"
+                datetime="{{ episode.date | htmlDateString }}"
+                >{{ episode.date | readableDate }}</time
+              >
+              <a
+                class="mb-2 underline"
+                href="{{ episode.data.permalink | url }}"
+                >Kuuntele &rarr;</a
+              >
+            </li>
+            {% endfor %}
+          </ul>
+        </div>
       </section>
     </div>
   </div>
+  <footer class="footer pb-16 flex flex-col items-center justify-center">
+    <img class="quality-seal mb-8" src="/img/seal.png" alt="Seal of quality" />
+    <div class="flex gap-4">
+      <a href="{{ global.itunesUrl }}">
+        <img
+          class="h-8"
+          src="/img/itunes.svg"
+          alt="{{ global.title }} Apple Podcastsissa"
+        />
+      </a>
+      <a href="{{ global.overcastUrl }}">
+        <img
+          class="h-8"
+          src="/img/overcast.svg"
+          alt="{{ global.title }} Overcastissa" />
+      </a>
+      <a href="{{ global.pocketCastsUrl }}">
+        <img
+          class="h-8"
+          src="/img/pocketcasts.svg"
+          alt="{{ global.title }} Pocket Castsissa"
+        />
+      </a>
+    </div>
+  </footer>
 </main>

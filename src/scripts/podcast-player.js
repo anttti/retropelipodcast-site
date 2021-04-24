@@ -24,6 +24,7 @@ class PodcastPlayer extends LitElement {
         width: 100%;
         padding: 1rem;
         box-sizing: border-box;
+        border-radius: 3px;
       }
 
       .sr-only {
@@ -50,8 +51,9 @@ class PodcastPlayer extends LitElement {
         align-self: center;
       }
 
-      :focus {
-        outline: 2px solid var(--player-highlight);
+      :focus-visible {
+        outline: none;
+        box-shadow: 0 0 0px 5px var(--player-focus);
       }
 
       button {
@@ -60,7 +62,7 @@ class PodcastPlayer extends LitElement {
         min-width: 26px;
         border: 1px solid transparent;
         background-color: transparent;
-        border-radius: 0;
+        border-radius: 3px;
         cursor: pointer;
         color: currentColor;
       }
@@ -75,7 +77,10 @@ class PodcastPlayer extends LitElement {
       }
 
       .button-secondary {
-        background: var(--player-highlight-light);
+        border-color: var(--player-highlight);
+      }
+      .button-secondary:focus-visible {
+        border-color: var(--player-focus);
       }
 
       .progress-meter {
@@ -94,15 +99,15 @@ class PodcastPlayer extends LitElement {
         height: 0.5rem;
         cursor: pointer;
         animate: 0.2s;
-        border: 1px solid #333;
-        border-radius: 0;
+        border: 1px solid var(--player-highlight);
+        border-radius: 3px;
       }
 
       input[type="range"]::-webkit-slider-thumb {
         border: none;
-        height: 1rem;
-        width: 1rem;
-        border-radius: 0;
+        height: 15px;
+        width: 15px;
+        border-radius: 3px;
         background: var(--player-highlight);
         cursor: pointer;
         -webkit-appearance: none;
@@ -154,7 +159,7 @@ class PodcastPlayer extends LitElement {
 
     // HTMLAudioElement
     this.audio = this.querySelector("audio");
-    this.audio.controls = false; // remove controls if it has 'em
+    this.audio.controls = false;
 
     this.speeds = [1, 1.25, 1.5, 1.75, 2];
     this.currentSpeedIdx = 0;
@@ -176,47 +181,17 @@ class PodcastPlayer extends LitElement {
     this.currentTime = this.audio.currentTime;
   }
 
-  parseTime(str) {
-    var plain = /^\d+(\.\d+)?$/g,
-      npt = /^(?:npt:)?(?:(?:(\d+):)?(\d\d?):)?(\d\d?)(\.\d+)?$/,
-      quirks = /^(?:(\d\d?)[hH])?(?:(\d\d?)[mM])?(\d\d?)[sS]$/,
-      match;
-    if (plain.test(str)) {
-      return parseFloat(str);
-    }
-    match = npt.exec(str) || quirks.exec(str);
-    if (match) {
-      return (
-        3600 * (parseInt(match[1], 10) || 0) +
-        60 * (parseInt(match[2], 10) || 0) +
-        parseInt(match[3], 10) +
-        (parseFloat(match[4]) || 0)
-      );
-    }
-    return 0;
-  }
-
-  toHHMMSS(totalsecs) {
-    var sec_num = parseInt(totalsecs, 10); // don't forget the second param
-    var hours = Math.floor(sec_num / 3600);
-    var minutes = Math.floor((sec_num - hours * 3600) / 60);
-    var seconds = sec_num - hours * 3600 - minutes * 60;
-
-    if (hours < 10) {
-      hours = "0" + hours;
-    }
-    if (minutes < 10) {
-      minutes = "0" + minutes;
-    }
-    if (seconds < 10) {
-      seconds = "0" + seconds;
-    }
-
-    hours = hours > 0 ? hours + ":" : "";
-    minutes = minutes + ":";
-
-    var time = hours + minutes + seconds;
-    return time;
+  toDurationString(secondsStr) {
+    const pad = (num) => {
+      const paddedString = `0${num}`;
+      return paddedString.substring(paddedString.length - 2);
+    };
+    const seconds = parseInt(secondsStr, 10);
+    const hh = Math.floor(seconds / (60 * 60));
+    const remain = seconds % (60 * 60);
+    const mm = Math.floor(remain / 60);
+    const ss = Math.floor(remain % 60);
+    return `${pad(hh)}:${pad(mm)}:${pad(ss)}`;
   }
 
   changeSpeed() {
@@ -250,20 +225,16 @@ class PodcastPlayer extends LitElement {
 
   render() {
     return html`
-      <slot></slot>
       <svg style="display: none;">
-        <symbol id="icon-play" viewBox="0 0 30.406 46.843">
+        <symbol id="icon-play" viewBox="0 0 15 27">
           <path
-            fill="var(--player-contrast)"
-            d="M977.571,603.068l-2.828-2.4,2.828-2.4,2.828,2.4Zm-3.535,3-2.829-2.4,2.829-2.4,2.828,2.4Zm-3.536,3-2.828-2.4,2.828-2.4,2.828,2.4Zm10.607-9.01-2.829-2.4,2.829-2.4,2.828,2.4Zm3.535-3-2.828-2.4,2.828-2.4,2.829,2.4Zm3.536-3-2.829-2.4,2.829-2.4,2.828,2.4Zm3.535-3-2.828-2.4,2.828-2.4,2.829,2.4Zm-17.677,9.01-2.829-2.4,2.829-2.4,2.828,2.4Zm-3.536,3-2.828-2.4,2.828-2.4,2.828,2.4Zm7.071-6.006-2.828-2.4,2.828-2.4,2.828,2.4Zm3.536-3-2.829-2.4,2.829-2.4,2.828,2.4Zm3.535-3-2.828-2.4,2.828-2.4,2.829,2.4Zm3.536-3-2.829-2.4,2.829-2.4,2.828,2.4Zm-17.678,9.01-2.828-2.4,2.828-2.4,2.828,2.4Zm3.536-3-2.829-2.4,2.829-2.4,2.828,2.4Zm3.535-3-2.828-2.4,2.828-2.4,2.828,2.4Zm3.536-3-2.829-2.4,2.829-2.4,2.828,2.4Zm3.535-3-2.828-2.4,2.828-2.4,2.829,2.4ZM970.5,591.055l-2.828-2.4,2.828-2.4,2.828,2.4Zm3.536-3-2.829-2.4,2.829-2.4,2.828,2.4Zm3.535-3-2.828-2.4,2.828-2.4,2.828,2.4Zm3.536-3-2.829-2.4,2.829-2.4,2.828,2.4Zm-10.607,3-2.828-2.4,2.828-2.4,2.828,2.4Zm3.536-3-2.829-2.4,2.829-2.4,2.828,2.4Zm3.535-3-2.828-2.4,2.828-2.4,2.828,2.4Zm-7.071,0-2.828-2.4,2.828-2.4,2.828,2.4Zm3.536-3-2.829-2.4,2.829-2.4,2.828,2.4Zm21.213,12.013-2.829-2.4,2.829-2.4,2.828,2.4Zm-3.536-3-2.828-2.4,2.828-2.4,2.829,2.4Zm-3.535-3-2.829-2.4,2.829-2.4,2.828,2.4Zm-3.536-3-2.828-2.4,2.828-2.4,2.829,2.4Zm-3.535-3-2.829-2.4,2.829-2.4,2.828,2.4Zm-3.536-3-2.828-2.4,2.828-2.4,2.828,2.4Zm-3.535-3-2.829-2.4,2.829-2.4,2.828,2.4Zm-3.536-3-2.828-2.4,2.828-2.4,2.828,2.4Zm0,6.007-2.828-2.4,2.828-2.4,2.828,2.4Z"
-            transform="translate(-967.656 -562.219)"
+            fill="var(--player-focus)"
+            d="M3 0H0V27H3V24H6V21H9V18H12V15H15V12H12V9H9V6H6V3H3V0Z"
           />
         </symbol>
-        <symbol id="icon-pause" viewBox="0 0 32 32">
-          <path
-            fill="var(--player-contrast)"
-            d="M4 4 H12 V28 H4 z M20 4 H28 V28 H20 z "
-          ></path>
+        <symbol id="icon-pause" viewBox="0 0 15 21">
+          <path fill="var(--player-focus)" d="M0 21V0H6V21H0Z" />
+          <path fill="var(--player-focus)" d="M15 0H9V21H15V0Z" />
         </symbol>
       </svg>
 
@@ -290,7 +261,7 @@ class PodcastPlayer extends LitElement {
         </button>
 
         <span class="sr-only">Toistettu</span>
-        <span class="currenttime time">${this.toHHMMSS(this.currentTime)}</span>
+        <span class="time">${this.toDurationString(this.currentTime)}</span>
         <input
           type="range"
           class="progress-meter"
@@ -299,7 +270,9 @@ class PodcastPlayer extends LitElement {
           @click="${this.seek}"
         />
         <span class="sr-only">Kesto</span>
-        <span class="duration time">${this.toHHMMSS(this.duration)}</span>
+        <span class="duration time"
+          >${this.toDurationString(this.duration)}</span
+        >
 
         <button
           class="button-speed button-secondary"

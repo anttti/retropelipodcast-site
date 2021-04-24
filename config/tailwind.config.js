@@ -6,6 +6,7 @@ module.exports = {
       black: "black",
       sky: "var(--sky-bg)",
       text: "var(--text)",
+      "light-bg": "var(--episode-bg)",
     },
   },
   variants: {},
