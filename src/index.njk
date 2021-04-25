@@ -6,7 +6,7 @@ layout: layouts/base.njk
   <div class="relative z-40 pt-20 sm:pt-40">
     {% set episodes = collections.episodes | reverse %}
 
-    <section class="latest-episode mb-8 md:mb-52 mx-2 sm:mx-auto py-2 sm:p-4 sm:max-w-xl relative z-50">
+    <section class="latest-episode border-solid border-32 xs:border-64 mb-8 md:mb-52 mx-2 sm:mx-auto py-2 sm:p-4 sm:max-w-xl relative z-50">
       {% include '_dinos.njk' %}
       <h3 class="mb-4 font-bold">
         {{ episodes[0].data.media.episode }}.

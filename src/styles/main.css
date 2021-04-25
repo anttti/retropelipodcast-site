@@ -78,93 +78,42 @@
   }
 }
 
-body {
-  font-family: "VT323", monospace;
-  text-shadow: 1px 1px var(--text-shadow);
+@layer base {
+  body {
+    text-shadow: 1px 1px var(--text-shadow);
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: "Press Start 2P";
+  }
 }
-h2,
-h3 {
-  font-family: "Press Start 2P", monospace;
-}
-.bg {
-  top: -800px;
-  height: 800px;
-}
-.gamepad {
-  width: 280px;
-  right: 2.5rem;
-  top: 2rem;
-  filter: drop-shadow(0 0.2rem 0.25rem rgba(0, 0, 0, 0.2));
-  transform: rotate(7deg);
-}
-.quality-seal {
-  width: 174px;
-  filter: drop-shadow(0 0.2rem 0.25rem rgba(0, 0, 0, 0.2));
-  transform: rotate(7deg);
-}
-.dino {
-  height: 34px;
-}
-.dino-duo {
-  top: -64px;
-}
-.dino-solo {
-  top: -78px;
-  left: 100px;
-}
-.decoration {
-  width: 56px;
-  height: 40px;
-  background-image: var(--decoration);
-  position: absolute;
-  top: -104px;
-  right: 0;
-}
+
 .latest-episode {
-  border: 32px solid;
   border-image-source: var(--border-tile);
   border-image-repeat: round;
   border-image-slice: 64 fill;
 }
 .ground {
-  height: 32px;
   background-image: var(--ground-tile);
   background-size: 32px;
 }
 @media (min-width: 500px) {
-  .dino {
-    height: 68px;
-  }
-  .dino-duo {
-    top: -132px;
-  }
-  .dino-solo {
-    top: -155px;
-    left: 200px;
-  }
-  .latest-episode {
-    border-width: 64px;
-  }
   .ground {
-    height: 64px;
     background-size: auto;
   }
-}
-.bg-1 {
-  background-image: var(--bg-1);
-}
-.bg-2 {
-  background-image: var(--bg-2);
-}
-.bg-3 {
-  background-image: var(--bg-3);
 }
 .episodes,
 .footer {
   background: var(--episodes-bg);
 }
 
-/* Shownote (classless HTML) styles */
+/** 
+ * Shownote (classless HTML) styles
+ */
 .shownotes :is(h1, h2, h3, h4, h5, h6) {
   @apply mt-6;
 }
