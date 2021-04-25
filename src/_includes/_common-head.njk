@@ -1,0 +1,56 @@
+<title>{{ global.title }}</title>
+<meta charset="utf-8" />
+<meta http-equiv="x-ua-compatible" content="ie=edge" />
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1, shrink-to-fit=no"
+/>
+<meta
+  name="keywords"
+  content="webbidevaus, web dev, podcast, react, node, typescript, javascript"
+/>
+<link rel="preconnect" href="https://fonts.gstatic.com" />
+<link
+  href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap"
+  rel="stylesheet"
+/>
+<link rel="stylesheet" type="text/css" href="/assets/main.css" />
+<link
+  rel="alternate"
+  type="application/rss+xml"
+  title="{{ global.title }} RSS"
+  href="{{ global.url }}{{ global.feedpath }}"
+/>
+<script>
+  let isDark =
+    window.matchMedia &&
+    window.matchMedia("(prefers-color-scheme: dark)").matches;
+  window
+    .matchMedia("(prefers-color-scheme: dark)")
+    .addEventListener("change", (e) => {
+      isDark = e.matches ? "dark" : "light";
+    });
+  function toggleTheme() {
+    isDark = !isDark;
+    const root = document.documentElement;
+    const prefix = isDark ? "dark" : "light";
+    root.style.setProperty("--sky-bg", `var(--${prefix}-sky)`);
+    root.style.setProperty("--episodes-bg", `var(--${prefix}-bg)`);
+    root.style.setProperty("--bg-1", `var(--${prefix}-bg-1)`);
+    root.style.setProperty("--bg-2", `var(--${prefix}-bg-2)`);
+    root.style.setProperty("--bg-3", `var(--${prefix}-bg-3)`);
+    root.style.setProperty("--border-tile", `var(--${prefix}-tile)`);
+    root.style.setProperty("--ground-tile", `var(--${prefix}-ground)`);
+    root.style.setProperty("--text", `var(--${prefix}-text)`);
+    root.style.setProperty("--text-shadow", `var(--${prefix}-text-shadow)`);
+    root.style.setProperty("--text-contrast", `var(--${prefix}-text-contrast)`);
+    root.style.setProperty(
+      "--text-transparent",
+      `var(--${prefix}-text-transparent)`
+    );
+    root.style.setProperty("--decoration", `var(--${prefix}-decoration)`);
+    root.style.setProperty("--focus", `var(--${prefix}-focus)`);
+    root.style.setProperty("--episode-bg", `var(--${prefix}-episode-bg)`);
+  }
+</script>
+<script type="module" src="/scripts/podcast-player.js"></script>

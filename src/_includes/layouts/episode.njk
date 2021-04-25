@@ -1,37 +1,65 @@
 ---
-layout: layouts/base.njk
+layout: layouts/skeleton-base.njk
 ---
 
-<main class="relative">
-  <div class="relative z-40 pt-20 sm:pt-40">
-    <section class="latest-episode border-solid border-32 xs:border-64 mb-8 md:mb-52 mx-2 sm:mx-auto p-2 sm:p-4 sm:max-w-xl relative z-50">
-      {% include '_dinos.njk' %}
-      <h3 class="mt-4 font-bold text-center">
-        {{ media.episode }}.
-        {{ media.title | safe }}
-      </h3>
+<head>
+  {% include '_common-head.njk' %}
 
-      <div class="max-w-lg mx-auto my-8">
-        <podcast-player>
-          <audio
-            controls="controls"
-            preload="none"
-            width="100%"
-            src="{{ media.data.media.content }}"
-          ></audio>
-        </podcast-player>
+  <meta name="title" content="{{ media.episode }}. {{ media.title }}" />
+  <meta name="description" content="{{ media.summary }}" />
+  <meta property="og:title" content="{{ media.episode }}. {{ media.title }}" />
+  <meta property="og:description" content="{{ media.summary }}" />
+  <meta property="og:url" content="{{ global.url }}/{{ media.episode }}" />
+  <meta property="og:image" content="{{ global.url }}{{ global.image }}" />
+  <meta property="og:type" content="website" />
+  <meta
+    property="twitter:title"
+    content="{{ media.episode }}. {{ media.title }}"
+  />
+  <meta property="twitter:description" content="{{ media.summary }}" />
+  <meta property="twitter:url" content="{{ global.url }}/{{ media.episode }}" />
+  <meta property="twitter:image" content="{{ global.url }}{{ global.image }}" />
+  <meta property="twitter:card" content="summary_large_image" />
+</head>
+
+<body
+  class="flex flex-col min-h-screen justify-between relative z-50 bg-sky text-text light-bg"
+>
+  {% include '_header.njk' %}
+
+  <main class="relative">
+    <div class="relative z-40 pt-20 xs:pt-40">
+      <section
+        class="latest-episode border-solid border-32 xs:border-64 mb-8 md:mb-52 mx-2 sm:mx-auto py-2 xs:p-4 sm:max-w-xl relative z-50"
+      >
+        {% include '_dinos.njk' %}
+        <h3 class="mt-4 font-bold text-center">
+          {{ media.episode }}.
+          {{ media.title | safe }}
+        </h3>
+
+        <div class="max-w-lg mx-auto my-8">
+          <podcast-player>
+            <audio
+              controls="controls"
+              preload="none"
+              width="100%"
+              src="{{ media.data.media.content }}"
+            ></audio>
+          </podcast-player>
+        </div>
+
+        <div class="shownotes mt-4 space-y-2">
+          {{ content | safe }}
+        </div>
+      </section>
+
+      <div class="relative z-10">
+        {% include '_bg.njk' %}
+        <section class="episodes relative z-40 px-12 py-8"></section>
       </div>
-
-      <div class="shownotes mt-4 space-y-2">
-        {{ content | safe }}
-      </div>
-    </section>
-
-    <div class="relative z-10">
-      {% include '_bg.njk' %}
-
-      <section class="episodes relative z-40 px-12 py-8"></section>
     </div>
-  </div>
+  </main>
+
   {% include '_footer.njk' %}
-</main>
+</body>

@@ -1,61 +1,72 @@
 ---
-layout: layouts/base.njk
+layout: layouts/skeleton-base.njk
 ---
 
-<main class="relative">
-  <div class="relative z-40 pt-20 sm:pt-40">
-    {% set episodes = collections.episodes | reverse %}
+<head>
+  {% include '_common-head.njk' %}
+</head>
 
-    <section class="latest-episode border-solid border-32 xs:border-64 mb-8 md:mb-52 mx-2 sm:mx-auto py-2 sm:p-4 sm:max-w-xl relative z-50">
-      {% include '_dinos.njk' %}
-      <h3 class="mb-4 font-bold">
-        {{ episodes[0].data.media.episode }}.
-        {{ episodes[0].data.media.title | safe }}
-      </h3>
-      <p class="mb-4 text-2xl leading-none">
-        {{ episodes[0].data.media.summary | safe }}
-      </p>
-      <podcast-player>
-        <audio
-          controls="controls"
-          preload="none"
-          width="100%"
-          src="{{ episodes[0].data.media.content }}"
-        ></audio>
-      </podcast-player>
-    </section>
+<body
+  class="flex flex-col min-h-screen justify-between relative z-50 bg-sky text-text light-bg"
+>
+  {% include '_header.njk' %}
+  
+  <main class="relative">
+    <div class="relative z-40 pt-20 xs:pt-40">
+      {% set episodes = collections.episodes | reverse %}
 
-    <div class="relative z-10">
-      {% include '_bg.njk' %}
-
-      <section class="episodes relative z-40 px-12 py-8">
-        <div class="max-w-screen-lg mx-auto">
-          <h2 class="mb-8 font-bold text-center">Edelliset jaksot</h2>
-          <ul class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {% for episode in episodes %}
-            <li class="p-4 rounded text-2xl leading-none bg-light-bg">
-              <h3 class="mb-2 text-sm">
-                <a href="{{ episode.data.permalink | url }}"
-                  >{{ episode.data.media.episode }}:
-                  {{ episode.data.media.title }}</a
-                >
-              </h3>
-              <time
-                class="mb-2 block"
-                datetime="{{ episode.date | htmlDateString }}"
-                >{{ episode.date | readableDate }}</time
-              >
-              <a
-                class="mb-2 underline"
-                href="{{ episode.data.permalink | url }}"
-                >Kuuntele &rarr;</a
-              >
-            </li>
-            {% endfor %}
-          </ul>
-        </div>
+      <section class="latest-episode border-solid border-32 xs:border-64 mb-8 md:mb-52 mx-2 sm:mx-auto py-2 xs:p-4 sm:max-w-xl relative z-50">
+        {% include '_dinos.njk' %}
+        <h3 class="mb-4 font-bold">
+          {{ episodes[0].data.media.episode }}.
+          {{ episodes[0].data.media.title | safe }}
+        </h3>
+        <p class="mb-4 text-2xl leading-none">
+          {{ episodes[0].data.media.summary | safe }}
+        </p>
+        <podcast-player>
+          <audio
+            controls="controls"
+            preload="none"
+            width="100%"
+            src="{{ episodes[0].data.media.content }}"
+          ></audio>
+        </podcast-player>
       </section>
+
+      <div class="relative z-10">
+        {% include '_bg.njk' %}
+
+        <section class="episodes relative z-40 px-12 py-8">
+          <div class="max-w-screen-lg mx-auto">
+            <h2 class="mb-8 font-bold text-center">Edelliset jaksot</h2>
+            <ul class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {% for episode in episodes %}
+              <li class="p-4 rounded text-2xl leading-none bg-light-bg">
+                <h3 class="mb-2 text-sm">
+                  <a href="{{ episode.data.permalink | url }}"
+                    >{{ episode.data.media.episode }}:
+                    {{ episode.data.media.title }}</a
+                  >
+                </h3>
+                <time
+                  class="mb-2 block"
+                  datetime="{{ episode.data.media.publishDate | htmlDateString }}"
+                  >{{ episode.data.media.publishDate | readableDate }}</time
+                >
+                <a
+                  class="mb-2 underline"
+                  href="{{ episode.data.permalink | url }}"
+                  >Kuuntele &rarr;</a
+                >
+              </li>
+              {% endfor %}
+            </ul>
+          </div>
+        </section>
+      </div>
     </div>
-  </div>
+  </main>
+
   {% include '_footer.njk' %}
-</main>
+</body>
