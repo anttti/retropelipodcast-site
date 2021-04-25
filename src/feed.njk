@@ -25,13 +25,17 @@ sitemap:
     <itunes:author>{{ global.author | xmlEscape }}</itunes:author>
     <itunes:explicit>{{ global.explicit }}</itunes:explicit>
     <itunes:type>{{ global.type }}</itunes:type>
-    <itunes:image href="{{ global.channelImage }}" />
+    <itunes:image href="{{ global.url }}{{ global.image }}" />
     <itunes:keywords>{{ global.keywords }}</itunes:keywords>
     <itunes:owner>
       <itunes:name>{{ global.owner.name }}</itunes:name>
       <itunes:email>{{ global.owner.email }}</itunes:email>
     </itunes:owner>
-    <itunes:category text="{{ global.category }}" />
+    <itunes:category text="{{ global.mainCategory }}">
+      <itunes:category text="{{ global.subCategory1 }}"/>
+      <itunes:category text="{{ global.subCategory2 }}"/>
+      <itunes:category text="{{ global.subCategory3 }}"/>
+    </itunes:category>
     <itunes:new-feed-url>{{ global.url }}{{ global.feedPath }}</itunes:new-feed-url>
     {% for episode in collections.episodes | reverse %}
     <item>

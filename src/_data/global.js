@@ -2,7 +2,10 @@ module.exports = {
   title: "Retropelipodcast",
   url: "https://retropelipodcast.com",
   author: "Antti Mattila, Jarno Tuominen ja Teemu Vänni",
-  category: "Games",
+  mainCategory: "Leisure",
+  subCategory1: "Video Games",
+  subCategory2: "Hobbies",
+  subCategory3: "Games",
   keywords:
     "retro, peli, videopeli, nes, snes, gameboy, konsoli, playstation, psx",
   description: "",
