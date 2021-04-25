@@ -8,6 +8,19 @@ layout: layouts/skeleton-base.njk
   <title>{{ global.title }}</title>
   <meta name="title" content="{{ global.title }}" />
   <meta name="description" content="{{ global.description }}" />
+  <meta property="og:title" content="{{ global.title }}" />
+  <meta property="og:description" content="{{ global.description }}" />
+  <meta property="og:url" content="{{ global.url }}" />
+  <meta property="og:image" content="{{ global.url }}{{ global.image }}" />
+  <meta property="og:type" content="website" />
+  <meta
+    property="twitter:title"
+    content="{{ global.title }}"
+  />
+  <meta property="twitter:description" content="{{ global.description }}" />
+  <meta property="twitter:url" content="{{ global.url }}" />
+  <meta property="twitter:image" content="{{ global.url }}{{ global.image }}" />
+  <meta property="twitter:card" content="summary_large_image" />
 </head>
 
 <body
