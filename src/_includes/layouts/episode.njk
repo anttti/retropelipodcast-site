@@ -28,8 +28,8 @@ layout: layouts/skeleton-base.njk
 >
   {% include '_header.njk' %}
 
-  <main class="relative">
-    <div class="relative z-40 pt-20 xs:pt-40">
+  <main class="relative flex-1 bg-dark-bg">
+    <div class="relative z-40 pt-20 xs:pt-40 h-full bg-sky">
       <section
         class="latest-episode border-solid border-32 xs:border-64 mb-8 md:mb-52 mx-2 sm:mx-auto py-2 xs:p-4 sm:max-w-xl relative z-50"
       >
@@ -55,9 +55,8 @@ layout: layouts/skeleton-base.njk
         </div>
       </section>
 
-      <div class="relative z-10">
+      <div class="relative z-10 pb-8 bg-dark-bg">
         {% include '_bg.njk' %}
-        <section class="episodes relative z-40 px-12 py-8"></section>
       </div>
     </div>
   </main>

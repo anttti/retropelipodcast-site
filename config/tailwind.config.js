@@ -7,6 +7,7 @@ module.exports = {
       sky: "var(--sky-bg)",
       text: "var(--text)",
       "light-bg": "var(--episode-bg)",
+      "dark-bg": "var(--episodes-bg)",
     },
     fontFamily: {
       sans: ["VT323", "monospace"],

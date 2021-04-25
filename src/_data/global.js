@@ -14,7 +14,7 @@ module.exports = {
     name: "Antti Mattila, Jarno Tuominen ja Teemu Vänni",
     email: "me@rarelyneeded.com",
   },
-  image: "/img/retropelipodcast.jpg",
+  image: "/img/retropelipodcast.png",
   feedPath: "/episodes/feed.xml",
   language: "fi",
   episodeType: "full",
