@@ -8,7 +8,8 @@ module.exports = {
   subCategory3: "Games",
   keywords:
     "retro, peli, videopeli, nes, snes, gameboy, konsoli, playstation, psx",
-  description: "",
+  description:
+    "Nostalginen puheradio-ohjelma videopeleistä ja popkulttuurista ikuisille teineille.",
   owner: {
     name: "Antti Mattila, Jarno Tuominen ja Teemu Vänni",
     email: "me@rarelyneeded.com",

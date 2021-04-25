@@ -5,6 +5,7 @@ layout: layouts/skeleton-base.njk
 <head>
   {% include '_common-head.njk' %}
 
+  <title>{{ media.episode }}. {{ media.title }} - {{ global.title }}</title>
   <meta name="title" content="{{ media.episode }}. {{ media.title }}" />
   <meta name="description" content="{{ media.summary }}" />
   <meta property="og:title" content="{{ media.episode }}. {{ media.title }}" />
