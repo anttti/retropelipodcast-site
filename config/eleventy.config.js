@@ -4,6 +4,13 @@ const { DateTime } = require("luxon");
 const global = require("../src/_data/global");
 
 module.exports = function (eleventyConfig) {
+  const isPublished = (episode) => !episode.data.draft;
+  eleventyConfig.addCollection("publishedEpisodes", (collection) => {
+    return collection
+      .getFilteredByGlob("./src/episodes/*.md")
+      .filter(isPublished);
+  });
+
   eleventyConfig.addFilter("rfc822Date", (dateValue) => {
     return dateValue ? rfc822Date(dateValue) : "";
   });

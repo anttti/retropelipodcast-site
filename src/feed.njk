@@ -12,8 +12,8 @@ sitemap:
     <link>{{ global.url }}</link>
     <language>{{ global.language }}</language>
     <copyright>&#169; 2021 - {{ global.buildDate | year }} {{ global.author }}</copyright>
-    <pubDate>{{ collections.episodes | collectionLastUpdatedDate }}</pubDate>
-    <lastBuildDate>{{ collections.episodes | collectionLastUpdatedDate }}</lastBuildDate>
+    <pubDate>{{ collections.publishedEpisodes | collectionLastUpdatedDate }}</pubDate>
+    <lastBuildDate>{{ collections.publishedEpisodes | collectionLastUpdatedDate }}</lastBuildDate>
     <generator>Eleventy</generator>
     <description>{{ global.description | xmlEscape }}</description>
     <image>
@@ -37,7 +37,7 @@ sitemap:
       <itunes:category text="{{ global.subCategory3 }}"/>
     </itunes:category>
     <itunes:new-feed-url>{{ global.url }}{{ global.feedPath }}</itunes:new-feed-url>
-    {% for episode in collections.episodes | reverse %}
+    {% for episode in collections.publishedEpisodes | reverse %}
     <item>
       <guid>{{ episode.data.media.episode | link }}</guid>
       <title>{{ episode.data.media.episode }}. {{ episode.data.media.title | xmlEscape }}</title>

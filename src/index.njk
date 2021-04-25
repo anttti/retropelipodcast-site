@@ -28,9 +28,9 @@ layout: layouts/skeleton-base.njk
 >
   {% include '_header.njk' %}
   
-  <main class="relative">
-    <div class="relative z-40 pt-20 xs:pt-40">
-      {% set episodes = collections.episodes | reverse %}
+  <main class="relative flex-1 bg-dark-bg">
+    <div class="relative z-40 pt-20 xs:pt-40 h-full bg-sky">
+      {% set episodes = collections.publishedEpisodes | reverse %}
 
       <section class="latest-episode border-solid border-32 xs:border-64 mb-8 md:mb-52 mx-2 sm:mx-auto py-2 xs:p-4 sm:max-w-xl relative z-50">
         {% include '_dinos.njk' %}
