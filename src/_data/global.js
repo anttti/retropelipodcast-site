@@ -15,7 +15,7 @@ module.exports = {
     email: "me@rarelyneeded.com",
   },
   image: "/img/retropelipodcast.png",
-  feedPath: "/episodes/feed.xml",
+  feedPath: "/feed.xml",
   language: "fi",
   episodeType: "full",
   explicit: "false",
