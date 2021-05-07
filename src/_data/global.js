@@ -21,4 +21,8 @@ module.exports = {
   explicit: "false",
   type: "episodic",
   buildDate: new Date(),
+  itunesUrl:
+    "https://itunes.apple.com/fi/podcast/retropelipodcast/id1566283295",
+  overcastUrl: "https://overcast.fm/itunes1566283295/retropelipodcast",
+  pocketCastsUrl: "https://pca.st/jhr4j231",
 };
