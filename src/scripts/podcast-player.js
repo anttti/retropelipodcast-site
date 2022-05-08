@@ -103,7 +103,8 @@ class PodcastPlayer extends LitElement {
         background: transparent;
       }
 
-      input[type="range"]::-webkit-slider-runnable-track {
+      input[type="range"]::-webkit-slider-runnable-track,
+      input[type="range"]::-moz-range-track {
         width: 100%;
         height: 0.5rem;
         cursor: pointer;
@@ -112,7 +113,8 @@ class PodcastPlayer extends LitElement {
         border-radius: 3px;
       }
 
-      input[type="range"]::-webkit-slider-thumb {
+      input[type="range"]::-webkit-slider-thumb,
+      input[type="range"]::-moz-range-thumb {
         border: none;
         height: 15px;
         width: 15px;
