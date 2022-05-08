@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "clean": "rimraf _site",
+    "clean": "rm -rf _site",
     "serve:eleventy": "ELEVENTY_ENV=development eleventy --config=config/eleventy.config.js --serve",
     "serve:styles": "TAILWIND_MODE=watch NODE_ENV=development postcss --config=config ./src/styles/main.css -o ./_site/assets/main.css -w",
     "serve": "npm-run-all clean build:styles:dev --parallel serve:*",
@@ -17,17 +17,14 @@
   "author": "Antti Mattila",
   "license": "MIT",
   "devDependencies": {
-    "@11ty/eleventy": "0.12.1",
+    "@11ty/eleventy": "1.0.1",
+    "@tailwindcss/typography": "0.4.0",
     "autoprefixer": "10.2.5",
-    "lodash.escape": "^4.0.1",
+    "lodash.escape": "4.0.1",
     "npm-run-all": "4.1.5",
     "postcss": "8.2.9",
     "postcss-cli": "8.3.1",
     "rfc822-date": "0.0.3",
-    "rimraf": "3.0.2",
     "tailwindcss": "2.1.1"
-  },
-  "dependencies": {
-    "@tailwindcss/typography": "^0.4.0"
   }
 }
