@@ -103,7 +103,18 @@ class PodcastPlayer extends LitElement {
         background: transparent;
       }
 
-      input[type="range"]::-webkit-slider-runnable-track,
+      input[type="range"]::-webkit-slider-runnable-track {
+        width: 100%;
+        height: 0.5rem;
+        cursor: pointer;
+        animate: 0.2s;
+        border: 1px solid var(--player-highlight);
+        border-radius: 3px;
+      }
+
+      /* This is super weird, but combining this selector with the one
+         above results in Safari not rendering the track. Similar
+         case with the slider thumb below. */
       input[type="range"]::-moz-range-track {
         width: 100%;
         height: 0.5rem;
@@ -113,7 +124,17 @@ class PodcastPlayer extends LitElement {
         border-radius: 3px;
       }
 
-      input[type="range"]::-webkit-slider-thumb,
+      input[type="range"]::-webkit-slider-thumb {
+        border: none;
+        height: 15px;
+        width: 15px;
+        border-radius: 3px;
+        background: var(--player-highlight);
+        cursor: pointer;
+        -webkit-appearance: none;
+        margin-top: -0.25rem;
+      }
+
       input[type="range"]::-moz-range-thumb {
         border: none;
         height: 15px;

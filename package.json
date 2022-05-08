@@ -5,9 +5,9 @@
   "main": "index.js",
   "scripts": {
     "clean": "rm -rf _site",
-    "serve:eleventy": "ELEVENTY_ENV=development eleventy --config=config/eleventy.config.js --serve",
-    "serve:styles": "TAILWIND_MODE=watch NODE_ENV=development postcss --config=config ./src/styles/main.css -o ./_site/assets/main.css -w",
-    "serve": "npm-run-all clean build:styles:dev --parallel serve:*",
+    "dev:eleventy": "ELEVENTY_ENV=development eleventy --config=config/eleventy.config.js --serve",
+    "dev:styles": "TAILWIND_MODE=watch NODE_ENV=development postcss --config=config ./src/styles/main.css -o ./_site/assets/main.css -w",
+    "dev": "npm-run-all clean build:styles:dev --parallel dev:*",
     "build:eleventy": "ELEVENTY_ENV=production eleventy --config=config/eleventy.config.js",
     "build:styles": "TAILWIND_MODE=build NODE_ENV=production postcss --config=config ./src/styles/main.css -o ./_site/assets/main.css",
     "build:styles:dev": "TAILWIND_MODE=build NODE_ENV=development postcss --config=config ./src/styles/main.css -o ./_site/assets/main.css",
