@@ -1,6 +1,5 @@
 module.exports = {
-  mode: "jit",
-  purge: ["./src/**/*.{njk,md,html}"],
+  content: ["./src/**/*.{njk,md,html}"],
   theme: {
     colors: {
       black: "black",
@@ -42,6 +41,5 @@ module.exports = {
       64: "64px",
     },
   },
-  variants: {},
   plugins: [require("@tailwindcss/typography")],
 };

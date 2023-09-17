@@ -41,14 +41,16 @@ layout: layouts/skeleton-base.njk
         <p class="mb-4 text-2xl leading-none">
           {{ episodes[0].data.media.summary | safe }}
         </p>
-        <podcast-player>
-          <audio
-            controls="controls"
-            preload="none"
-            width="100%"
-            src="{{ episodes[0].data.media.content }}"
-          ></audio>
-        </podcast-player>
+        <div class="h-[170px]">
+          <podcast-player>
+            <audio
+              controls="controls"
+              preload="none"
+              width="100%"
+              src="{{ episodes[0].data.media.content }}"
+            ></audio>
+          </podcast-player>
+        </div>
       </section>
 
       <div class="relative z-10">
