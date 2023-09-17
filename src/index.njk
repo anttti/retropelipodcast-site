@@ -23,22 +23,20 @@ layout: layouts/skeleton-base.njk
   <meta property="twitter:card" content="summary_large_image" />
 </head>
 
-<body
-  class="flex flex-col min-h-screen justify-between relative z-50 bg-sky text-text light-bg"
->
+<body class="body">
   {% include '_header.njk' %}
   
-  <main class="relative flex-1 bg-dark-bg">
-    <div class="relative z-40 pt-20 xs:pt-40 h-full bg-sky">
+  <main class="main">
+    <div class="container">
       {% set episodes = collections.publishedEpisodes | reverse %}
 
-      <section class="latest-episode border-solid border-32 xs:border-64 mb-8 md:mb-52 mx-2 sm:mx-auto py-2 xs:p-4 sm:max-w-xl relative z-50">
+      <section class="latest-episode">
         {% include '_dinos.njk' %}
-        <h3 class="mb-4 font-bold">
+        <h3 class="latest-episode-title">
           {{ episodes[0].data.media.episode }}.
           {{ episodes[0].data.media.title | safe }}
         </h3>
-        <p class="mb-4 text-2xl leading-none">
+        <p class="latest-episode-summary">
           {{ episodes[0].data.media.summary | safe }}
         </p>
         <div class="min-h-[170px]">
@@ -53,28 +51,28 @@ layout: layouts/skeleton-base.njk
         </div>
       </section>
 
-      <div class="relative z-10">
+      <div class="episodes">
         {% include '_bg.njk' %}
 
-        <section class="episodes relative z-40 px-12 py-8">
-          <div class="max-w-screen-lg mx-auto">
-            <h2 class="mb-8 font-bold text-center">Edelliset jaksot</h2>
-            <ul class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <section class="episodes-container">
+          <div class="episodes-inner-container">
+            <h2 class="episodes-title">Edelliset jaksot</h2>
+            <ul class="episodes-list">
               {% for episode in episodes %}
-              <li class="p-4 rounded text-2xl leading-none bg-light-bg">
-                <h3 class="mb-2 text-sm">
+              <li class="episodes-list-item">
+                <h3 class="episodes-list-item-title">
                   <a href="{{ episode.data.permalink | url }}"
                     >{{ episode.data.media.episode }}:
                     {{ episode.data.media.title }}</a
                   >
                 </h3>
                 <time
-                  class="mb-2 block"
+                  class="episodes-list-item-running-time"
                   datetime="{{ episode.data.media.publishDate | htmlDateString }}"
                   >{{ episode.data.media.publishDate | readableDate }}</time
                 >
                 <a
-                  class="mb-2 underline"
+                  class="episodes-list-item-link"
                   href="{{ episode.data.permalink | url }}"
                   >Kuuntele &rarr;</a
                 >

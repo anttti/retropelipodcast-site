@@ -70,6 +70,7 @@ module.exports = function (eleventyConfig) {
 
   eleventyConfig.addPassthroughCopy({ "src/img": "img" });
   eleventyConfig.addPassthroughCopy({ "src/scripts": "scripts" });
+  eleventyConfig.addPassthroughCopy({ "src/styles": "styles" });
   eleventyConfig.setBrowserSyncConfig({
     files: [
       "_site/**/*.html",

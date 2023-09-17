@@ -1,0 +1,509 @@
+:root {
+  --light-sky: #5381d3;
+  --light-bg: #8e573b;
+
+  --light-bg-1: url("/img/light-BG1.png");
+  --light-bg-2: url("/img/light-BG2.png");
+  --light-bg-3: url("/img/light-BG3.png");
+  --light-tile: url("/img/light-tile.png");
+  --light-ground: url("/img/light-ground.png");
+  --light-episode-bg: rgb(202 149 96);
+  --light-text: rgb(47 20 0);
+  --light-text-shadow: rgb(255 255 255 / 20%);
+  --light-text-contrast: var(--light-bg);
+  --light-text-transparent: rgb(47 20 0 / 20%);
+  --light-decoration: url("/img/light-decoration.png");
+  --light-focus: var(--light-bg);
+
+  --dark-sky: #2e5a89;
+  --dark-bg: #2e2c3b;
+  --dark-bg-1: url("/img/background_0.png");
+  --dark-bg-2: url("/img/background_1.png");
+  --dark-bg-3: url("/img/background_2.png");
+  --dark-tile: url("/img/dark-tile.png");
+  --dark-ground: url("/img/dark-ground.png");
+  --dark-episode-bg: rgb(255 255 255 / 20%);
+  --dark-text: white;
+  --dark-text-shadow: rgb(0 0 0 / 20%);
+  --dark-text-contrast: var(--dark-bg);
+  --dark-text-transparent: rgb(255 255 255 / 20%);
+  --dark-decoration: url("/img/dark-decoration.png");
+  --dark-focus: var(--dark-bg);
+
+  --player-highlight: var(--text);
+  --player-highlight-light: var(--text-transparent);
+  --player-focus: var(--focus);
+  --player-contrast: var(--text-contrast);
+  --player-background: var(--episode-bg);
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --sky-bg: var(--light-sky);
+    --episodes-bg: var(--light-bg);
+    --episode-bg: var(--light-episode-bg);
+    --bg-1: var(--light-bg-1);
+    --bg-2: var(--light-bg-2);
+    --bg-3: var(--light-bg-3);
+    --border-tile: var(--light-tile);
+    --ground-tile: var(--light-ground);
+    --text: var(--light-text);
+    --text-shadow: var(--light-text-shadow);
+    --text-contrast: var(--light-text-contrast);
+    --text-transparent: var(--light-text-transparent);
+    --decoration: var(--light-decoration);
+    --focus: var(--light-focus);
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --sky-bg: var(--dark-sky);
+    --episodes-bg: var(--dark-bg);
+    --episode-bg: var(--dark-episode-bg);
+    --bg-1: var(--dark-bg-1);
+    --bg-2: var(--dark-bg-2);
+    --bg-3: var(--dark-bg-3);
+    --border-tile: var(--dark-tile);
+    --ground-tile: var(--dark-ground);
+    --text: var(--dark-text);
+    --text-shadow: var(--dark-text-shadow);
+    --text-contrast: var(--dark-text-contrast);
+    --text-transparent: var(--dark-text-transparent);
+    --decoration: var(--dark-decoration);
+    --focus: var(--dark-focus);
+  }
+}
+
+*,
+::before,
+::after {
+  box-sizing: border-box;
+}
+
+html {
+  line-height: 1.5;
+  font-family: VT323, monospace;
+}
+
+body {
+  margin: 0;
+  line-height: inherit;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: inherit;
+  font-weight: inherit;
+}
+
+:-moz-focusring {
+  outline: auto;
+}
+
+blockquote,
+dl,
+dd,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+hr,
+figure,
+p,
+pre {
+  margin: 0;
+}
+
+ol,
+ul,
+menu {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+img,
+svg {
+  display: block;
+}
+
+img,
+video {
+  max-width: 100%;
+  height: auto;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Press Start 2P";
+}
+
+.body {
+  text-shadow: 1px 1px var(--text-shadow);
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  justify-content: space-between;
+  position: relative;
+  z-index: 50;
+  background-color: var(--sky-bg);
+  color: var(--text);
+}
+
+.header {
+  padding-inline: 2.5rem;
+  padding-block: 1.25rem;
+  background: black;
+}
+
+.header-container {
+  width: 100%;
+  max-width: 1280px;
+  margin: auto;
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+@media (min-width: 768px) {
+  .header-container {
+    justify-content: start;
+  }
+}
+
+.logo {
+  width: 16rem;
+}
+
+.gamepad {
+  filter: drop-shadow(0 10px 8px rgb(0 0 0 / 0.04))
+    drop-shadow(0 4px 3px rgb(0 0 0 / 0.1));
+  transform: rotate(7deg);
+  position: absolute;
+  z-index: 50;
+  display: none;
+  inset-inline-end: 2.5rem;
+  inset-block-start: 2rem;
+  width: 280px;
+}
+
+@media (min-width: 768px) {
+  .gamepad {
+    display: block;
+  }
+}
+
+.main {
+  position: relative;
+  flex: 1;
+  background-color: var(--episodes-bg);
+}
+
+.container {
+  position: relative;
+  z-index: 40;
+  padding-block-start: 5rem;
+  height: 100%;
+  background-color: var(--sky-bg);
+}
+
+@media (min-width: 500px) {
+  .container {
+    padding-block-start: 10rem;
+  }
+}
+
+.title {
+  font-weight: bold;
+  text-align: center;
+  margin-block-start: 1rem;
+}
+
+.player {
+  max-width: 32rem;
+  min-height: 170px;
+  margin-inline: auto;
+  margin-block: 2rem;
+}
+
+.background {
+  position: relative;
+  z-index: 10;
+  padding-block-end: 2rem;
+  background-color: var(--episodes-bg);
+}
+
+.sky-bg {
+  top: -800px;
+  height: 800px;
+  position: absolute;
+  width: 100%;
+}
+
+.sky-bg div {
+  height: 100%;
+  width: 100%;
+  background-position: bottom;
+  background-size: contain;
+  background-repeat: repeat-x;
+  position: absolute;
+  z-index: 10;
+}
+
+.sky-bg div:nth-of-type(2) {
+  z-index: 20;
+}
+
+.sky-bg div:nth-of-type(3) {
+  z-index: 30;
+}
+
+.ground {
+  position: relative;
+  z-index: 40;
+  width: 100%;
+  height: 2rem;
+  background-image: var(--ground-tile);
+  background-size: 32px;
+}
+
+@media (min-width: 500px) {
+  .ground {
+    background-size: auto;
+    height: 4rem;
+  }
+}
+
+.dinos-bg {
+  display: none;
+  position: absolute;
+  inset-inline-end: 0;
+  inset-block-start: -104px;
+  width: 3.5rem;
+  height: 2.5rem;
+}
+
+@media (min-width: 500px) {
+  .dinos-bg {
+    display: block;
+  }
+}
+
+.dinos {
+  position: absolute;
+  height: 34px;
+}
+
+@media (min-width: 500px) {
+  .dinos {
+    height: 68px;
+  }
+}
+
+.dinos-two {
+  top: -64px;
+}
+
+@media (min-width: 500px) {
+  .dinos-two {
+    top: -132px;
+  }
+}
+
+.dinos-one {
+  top: -78px;
+  left: 100px;
+}
+
+@media (min-width: 500px) {
+  .dinos-one {
+    top: -155px;
+    left: 200px;
+  }
+}
+
+.latest-episode {
+  border-image-source: var(--border-tile);
+  border-image-repeat: round;
+  border-image-slice: 64 fill;
+  border-style: solid;
+  border-width: 32px;
+  margin-block-end: 2rem;
+  margin-inline: 0.5rem;
+  padding-block: 0.5rem;
+  position: relative;
+  z-index: 50;
+}
+
+@media (min-width: 768px) {
+  .latest-episode {
+    margin-bottom: 13rem;
+  }
+}
+
+@media (min-width: 500px) {
+  .latest-episode {
+    border-width: 64px;
+    padding: 1rem;
+  }
+}
+
+@media (min-width: 640px) {
+  .latest-episode {
+    max-width: 36rem;
+    margin-inline: auto;
+  }
+}
+
+.latest-episode-title {
+  margin-block-end: 1rem;
+  font-weight: bold;
+}
+
+.latest-episode-summary {
+  margin-block-end: 1rem;
+  font-size: 1.5rem;
+  line-height: 1;
+}
+
+.episodes {
+  position: relative;
+  z-index: 10;
+  background: var(--episodes-bg);
+}
+
+.episodes-container {
+  position: relative;
+  z-index: 40;
+  padding-inline: 3rem;
+  padding-block: 2rem;
+}
+
+.episodes-inner-container {
+  margin-inline: auto;
+  max-width: 1024px;
+}
+
+.episodes-title {
+  margin-block-end: 2rem;
+  font-weight: bold;
+  text-align: center;
+}
+
+.episodes-list {
+  display: grid;
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+@media (min-width: 768px) {
+  .episodes-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1024px) {
+  .episodes-list {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.episodes-list-item {
+  padding: 1rem;
+  border-radius: 4px;
+  line-height: 1;
+  font-size: 1.5rem;
+  background-color: var(--episode-bg);
+}
+
+.episodes-list-item-title {
+  margin-block-end: 0.5rem;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+}
+
+.episodes-list-item-title a {
+  color: currentColor;
+}
+
+.episodes-list-item-running-time {
+  margin-block-end: 0.5rem;
+  display: block;
+}
+
+.episodes-list-item-link {
+  margin-block-end: 0.5rem;
+  text-decoration: underline;
+  color: currentColor;
+}
+
+.footer {
+  padding-block-end: 4rem;
+  background: var(--episodes-bg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.footer-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+@media (min-width: 500px) {
+  .footer-container {
+    flex-direction: row;
+  }
+}
+
+.footer img {
+  height: 2rem;
+}
+
+/** 
+ * Shownote (classless HTML) styles
+ */
+.shownotes {
+  margin-block-start: 1rem;
+}
+
+.shownotes :is(h1, h2, h3, h4, h5, h6) {
+  margin-top: 1.5rem;
+}
+
+.shownotes :is(p, ol, ul, li) {
+  font-size: 1.5rem;
+  line-height: 2rem;
+  line-height: 1;
+}
+
+.shownotes :is(ol, ul) {
+  list-style-position: inside;
+}
+
+.shownotes ol {
+  list-style-type: decimal;
+}
+
+.shownotes ul {
+  list-style-type: disc;
+}
+
+.shownotes a {
+  text-decoration-line: underline;
+  color: currentColor;
+}
