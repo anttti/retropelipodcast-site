@@ -1,6 +1,5 @@
-const escape = require("lodash.escape");
-const rfc822Date = require("rfc822-date");
-const { DateTime } = require("luxon");
+const escape = require("../lib/escape.js");
+const rfc822Date = require("../lib/rfc822-date.js");
 const global = require("../src/_data/global");
 
 module.exports = function (eleventyConfig) {
@@ -35,17 +34,13 @@ module.exports = function (eleventyConfig) {
     );
   });
 
-  eleventyConfig.addFilter("htmlDateString", (dateObj) => {
-    return DateTime.fromJSDate(dateObj, {
-      zone: "utc",
-    }).toFormat("yy-MM-dd");
-  });
+  eleventyConfig.addFilter("htmlDateString", (dateObj) =>
+    dateObj.toISOString()
+  );
 
-  eleventyConfig.addFilter("readableDate", (dateObj) => {
-    return DateTime.fromJSDate(dateObj, {
-      zone: "utc",
-    }).toFormat("d.M.yyyy");
-  });
+  eleventyConfig.addFilter("readableDate", (dateObj) =>
+    dateObj.toLocaleDateString("fi-FI")
+  );
 
   eleventyConfig.addFilter("year", (dateObj) => dateObj.getYear() + 1900);
 
@@ -70,6 +65,7 @@ module.exports = function (eleventyConfig) {
 
   eleventyConfig.addPassthroughCopy({ "src/img": "img" });
   eleventyConfig.addPassthroughCopy({ "src/scripts": "scripts" });
+  eleventyConfig.addPassthroughCopy({ "src/styles": "styles" });
   eleventyConfig.setBrowserSyncConfig({
     files: [
       "_site/**/*.html",

@@ -23,23 +23,19 @@ layout: layouts/skeleton-base.njk
   <meta property="twitter:card" content="summary_large_image" />
 </head>
 
-<body
-  class="flex flex-col min-h-screen justify-between relative z-50 bg-sky text-text light-bg"
->
+<body class="body">
   {% include '_header.njk' %}
 
-  <main class="relative flex-1 bg-dark-bg">
-    <div class="relative z-40 pt-20 xs:pt-40 h-full bg-sky">
-      <section
-        class="latest-episode border-solid border-32 xs:border-64 mb-8 md:mb-52 mx-2 sm:mx-auto py-2 xs:p-4 sm:max-w-xl relative z-50"
-      >
+  <main class="main">
+    <div class="container">
+      <section class="latest-episode">
         {% include '_dinos.njk' %}
-        <h3 class="mt-4 font-bold text-center">
+        <h1 class="title">
           {{ media.episode }}.
           {{ media.title | safe }}
-        </h3>
+        </h1>
 
-        <div class="max-w-lg mx-auto my-8 min-h-[170px]">
+        <div class="player">
           <podcast-player>
             <audio
               controls="controls"
@@ -50,12 +46,12 @@ layout: layouts/skeleton-base.njk
           </podcast-player>
         </div>
 
-        <div class="shownotes mt-4 space-y-2">
+        <div class="shownotes">
           {{ content | safe }}
         </div>
       </section>
 
-      <div class="relative z-10 pb-8 bg-dark-bg">
+      <div class="background">
         {% include '_bg.njk' %}
       </div>
     </div>
