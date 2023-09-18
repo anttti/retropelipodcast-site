@@ -341,7 +341,7 @@ h6 {
   border-width: 32px;
   margin-block-end: 2rem;
   margin-inline: 0.5rem;
-  padding-block: 0.5rem;
+  padding: 1rem;
   position: relative;
   z-index: 50;
 }
@@ -437,7 +437,7 @@ h6 {
   color: currentColor;
 }
 
-.episodes-list-item-running-time {
+.episodes-list-item-publish-date {
   margin-block-end: 0.5rem;
   display: block;
 }

@@ -8,14 +8,12 @@
     "dev:eleventy": "ELEVENTY_ENV=development eleventy --config=config/eleventy.config.js --serve",
     "dev": "npm run clean && npm run dev:eleventy",
     "build:eleventy": "ELEVENTY_ENV=production eleventy --config=config/eleventy.config.js",
-    "build": "run-s clean build:*"
+    "build": "npm run clean && npm run build:eleventy"
   },
   "keywords": [],
   "author": "Antti Mattila",
   "license": "MIT",
   "devDependencies": {
-    "@11ty/eleventy": "2.0.1",
-    "lodash.escape": "4.0.1",
-    "rfc822-date": "0.0.3"
+    "@11ty/eleventy": "2.0.1"
   }
 }
